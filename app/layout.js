@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,6 +10,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#167a7a", // lives in viewport (not metadata)
 };
 
 /** Page metadata (SEO + social) */
@@ -38,7 +40,7 @@ export const metadata = {
     description: `Compassionate non-medical home care in ${SITE.city}.`,
     images: ["/robin/hero-caregiver.jpg"],
   },
-  /** Optional but nice: make sure pages have a single canonical */
+  /** Canonical for cleaner SEO */
   alternates: { canonical: "/" },
 };
 
@@ -65,10 +67,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-white text-ink">
         <Header />
-        {/* Add bottom padding so the sticky bar never covers content on mobile */}
+        {/* Bottom padding so the sticky bar never covers content on mobile */}
         <main className="min-h-screen pb-28">{children}</main>
         <Footer />
         <StickyBar />
+        {/* Vercel Analytics */}
+        <Analytics />
+        {/* LocalBusiness schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
