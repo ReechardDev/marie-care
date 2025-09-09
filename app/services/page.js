@@ -1,4 +1,5 @@
 // app/services/page.js
+import CTAButtons from "@/components/CTAButtons";
 import { HeartHandshake, Bath, Pill, Utensils, Car, Clock } from "lucide-react";
 import Section from "@/components/Section";
 import CTAButtons from "@/components/CTAButtons";
@@ -55,29 +56,10 @@ export default function ServicesPage() {
         </div>
 
         {/* Quick CTA row */}
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href="/contact"
-            className="rounded-xl2 bg-[#167a7a] text-white px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#167a7a]"
-          >
-            Book a free consult
-          </a>
-          <a
-            href={SITE.phoneLink}
-            className="rounded-xl2 border px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#167a7a]"
-          >
-            Call
-          </a>
-          <a
-            href={SITE.whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-xl2 border px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#167a7a]"
-          >
-            WhatsApp
-          </a>
-        </div>
-      </Section>
+<div className="mt-8">
+  <CTAButtons compact align="left" />
+</div>
+</Section>
 
       {/* Clarity box */}
       <Section title="What’s included / What’s not" className="bg-cream">

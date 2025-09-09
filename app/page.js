@@ -1,4 +1,5 @@
 // app/page.js
+import CTAButtons from "@/components/CTAButtons";
 import Image from "next/image";
 import Section from "@/components/Section";
 import { SITE } from "@/lib/site";
@@ -48,33 +49,13 @@ export default function HomePage() {
               </p>
 
               {/* Primary actions */}
-              <div className="mt-4 flex flex-wrap gap-3 sm:gap-4">
-                <a
-                  href="/contact"
-                  className="rounded-xl2 bg-teal text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal"
-                >
-                  Book a free consult
-                </a>
-                <a
-                  href={SITE?.phoneLink}
-                  className="rounded-xl2 border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal"
-                  aria-label={`Call ${businessName}`}
-                >
-                  Call
-                </a>
-                <a
-                  href={SITE?.whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-xl2 border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal"
-                >
-                  WhatsApp
-                </a>
-              </div>
+<div className="mt-4">
+  <CTAButtons compact align="left" />
+</div>
 
-              <p className="mt-3 text-sm text-gray-600">
-                Based in Denver, CO (80222). Serving all Denver Metro Areas.
-              </p>
+<p className="mt-3 text-sm text-gray-600">
+  Based in Denver, CO (80222). Serving all Denver Metro Areas.
+</p>
             </div>
 
             {/* Right hero block */}
