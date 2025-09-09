@@ -1,7 +1,6 @@
 // app/page.js
 import Image from "next/image";
 import Section from "@/components/Section";
-import Testimonials from "@/components/Testimonials";
 import { SITE } from "@/lib/site";
 
 export const metadata = {
@@ -29,9 +28,8 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section className="relative isolate">
-        {/* Optional soft background image block (leave empty if no image yet) */}
+        {/* Optional soft background image block */}
         <div className="absolute inset-0 -z-10">
-          {/* If you add an image at /public/robin/hero.jpg it will render softly */}
           {/* <Image src="/robin/hero.jpg" alt="" fill className="object-cover opacity-30" priority /> */}
           <div className="h-full w-full bg-gradient-to-b from-teal/10 via-white to-white" />
         </div>
@@ -80,15 +78,15 @@ export default function HomePage() {
             </div>
 
             {/* Right hero block */}
-<div className="relative h-64 md:h-80 rounded-3xl border bg-white/60 shadow-soft overflow-hidden">
-  <Image
-    src="/robin/hero-main.jpg"
-    alt="Compassionate in-home senior care"
-    fill
-    className="object-cover"
-    priority
-  />
-</div>
+            <div className="relative h-64 md:h-80 rounded-3xl border bg-white/60 shadow-soft overflow-hidden">
+              <Image
+                src="/robin/hero-main.jpg"
+                alt="Compassionate in-home senior care"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -109,7 +107,10 @@ export default function HomePage() {
             { name: "Household support", desc: "Laundry, tidying, linens, and light housekeeping." },
             { name: "Errands & rides", desc: "Appointments, groceries, pharmacy, and safe transport." },
           ].map((s) => (
-            <div key={s.name} className="rounded-2xl border bg-white/70 p-5 shadow-soft">
+            <div
+              key={s.name}
+              className="group rounded-2xl border border-teal/20 bg-white p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-md"
+            >
               <div className="font-semibold">{s.name}</div>
               <p className="mt-1 text-sm text-gray-700">{s.desc}</p>
             </div>
@@ -159,32 +160,54 @@ export default function HomePage() {
       </Section>
 
       {/* TESTIMONIALS PREVIEW */}
-<Section title="Families we’ve supported">
-  <Testimonials
-    items={[
-      {
-        quote:
-          "Robin felt like family from day one. Gentle, reliable, and always there when we needed her.",
-        author: "J.S.",
-        location: "Denver, CO",
-        image: "/robin/testimonial-1.jpg",
-      },
-      {
-        quote:
-          "Clear communication and so much heart. Our mom is safer and happier at home.",
-        author: "M.L.",
-        location: "Cherry Creek, CO",
-        image: "/robin/testimonial-2.jpg",
-      },
-    ]}
-  />
-  <a
-    href="/testimonials"
-    className="mt-6 inline-block text-teal underline underline-offset-4 hover:no-underline"
-  >
-    Read more testimonials →
-  </a>
-</Section>
+      <Section title="Families we’ve supported">
+        <div className="grid gap-4 sm:grid-cols-2">
+          {[
+            {
+              quote:
+                "Robin felt like family from day one. Gentle, reliable, and always there when we needed her.",
+              author: "J.S.",
+              location: "Denver, CO",
+              image: "/robin/testimonial-1.jpg",
+            },
+            {
+              quote:
+                "Clear communication and so much heart. Our mom is safer and happier at home.",
+              author: "M.L.",
+              location: "Cherry Creek, CO",
+              image: "/robin/testimonial-2.jpg",
+            },
+          ].map((t, i) => (
+            <figure
+              key={i}
+              className="rounded-2xl border border-teal/20 bg-white/80 p-6 shadow-soft hover:shadow-md hover:-translate-y-0.5 transition text-center"
+            >
+              {t.image && (
+                <Image
+                  src={t.image}
+                  alt={t.author}
+                  width={80}
+                  height={80}
+                  className="w-20 h-20 rounded-full object-cover mx-auto mb-4"
+                />
+              )}
+              <blockquote className="text-gray-800 italic text-sm leading-relaxed">
+                “{t.quote}”
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-gray-600">
+                — {t.author}, {t.location}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <a
+          href="/testimonials"
+          className="mt-6 inline-block text-teal underline underline-offset-4 hover:no-underline"
+        >
+          Read more testimonials →
+        </a>
+      </Section>
 
       {/* FINAL CTA */}
       <Section title="Ready to talk?">

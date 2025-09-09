@@ -30,12 +30,12 @@ export default function Header() {
     }`;
 
   return (
-<header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-white via-teal-100 to-white backdrop-blur shadow-sm">
+<header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-gradient-to-r from-white via-teal-50 to-white backdrop-blur supports-[backdrop-filter]:bg-white/80 shadow-md">
   <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
-    {/* Brand: text instead of logo */}
+    {/* Brand: text instead of logo, dark teal */}
     <a
       href="/"
-      className="font-semibold text-base sm:text-lg text-[#167a7a] hover:opacity-80 transition"
+      className="font-bold text-base sm:text-lg text-[#167a7a] hover:opacity-80 transition"
       aria-label={SITE?.name ?? "Home"}
     >
       {SITE?.name ?? "Robin’s Touch Senior Care"}
@@ -48,12 +48,12 @@ export default function Header() {
               {l.label}
             </a>
           ))}
-          <a
-            href="/contact"
-            className="rounded-xl2 bg-teal text-white px-4 py-2 text-sm hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-teal"
-          >
-            Book a free consult
-          </a>
+         <a
+  href="/contact"
+  className="rounded-xl2 bg-[#167a7a] text-white px-4 py-2 text-sm hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#167a7a]"
+>
+  Book a free consult
+</a>
         </nav>
 
         {/* Mobile actions */}
@@ -84,15 +84,12 @@ export default function Header() {
           <nav className="mx-auto max-w-6xl px-4 py-3 grid gap-2">
             {navLinks.map((l) => (
               <a
-                key={l.href}
-                href={l.href}
-                className={`rounded-xl2 px-3 py-3 text-sm hover:bg-gray-50 ${
-                  pathname === l.href ? "text-teal font-medium" : "text-gray-800"
-                }`}
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
-              </a>
+  key={l.href}
+  href={l.href}
+  className={`text-sm text-gray-800 hover:text-[#167a7a] transition ${pathname === l.href ? "text-[#167a7a] font-medium" : ""}`}
+>
+  {l.label}
+</a>
             ))}
             <div className="h-px bg-gray-200 my-1" />
             <a

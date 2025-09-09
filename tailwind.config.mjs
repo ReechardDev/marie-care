@@ -1,18 +1,27 @@
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       colors: {
-        mint: "#b8f2e3",
-        teal: "#167a7a",
-        gold: "#d4af37",
-        ink: "#1f2937",
-        card: "#f5f5f5",
-        cream: "rgb(255 247 237 / 1)",
+        teal: { DEFAULT: "#167a7a" }, // brand teal
+        card: "#ffffff",
+        cream: "#fafaf7",
+        ink: "#0f172a",
       },
-      borderRadius: { xl2: "1.25rem" },
-      boxShadow: { soft: "0 6px 24px rgba(0,0,0,0.06)" },
+      boxShadow: {
+        soft: "0 8px 24px rgba(0,0,0,0.06)", // shadow-soft
+      },
+      borderRadius: {
+        xl2: "1rem", // rounded-xl2
+      },
     },
   },
   plugins: [],
