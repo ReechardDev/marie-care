@@ -50,7 +50,7 @@ export default function AboutPage() {
       postalCode: "80222",
       addressCountry: "US",
     },
-    areaServed: "Denver Metro",
+    areaServed: "Denver Metro Areas",
     // telephone: SITE?.phone,
     // email: SITE?.email,
   };
@@ -87,12 +87,12 @@ export default function AboutPage() {
               />
               <div className="space-y-3">
                 <p className="text-gray-700 leading-relaxed">
-                  When we work together, you’re not dealing with a big agency—you’re working with
+                  When we work together, you’re not dealing with a big agency, you’re working with
                   me. I listen first, learn what matters most to your family, and build a clear,
                   realistic plan that keeps your loved one safe, comfortable, and connected.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  My promise is steady, respectful care and open communication—so you always know
+                  My promise is steady, respectful care and open communication, so you always know
                   what’s happening and why.
                 </p>
               </div>
@@ -104,7 +104,7 @@ export default function AboutPage() {
                 <div className="font-semibold mb-2">Safeguards I personally uphold</div>
                 <ul className="mt-1 grid grid-cols-1 gap-y-2 text-sm text-gray-800">
                   <li>• I vet every caregiver for background, character, and fit.</li>
-                  <li>• You always approve the caregiver—no surprises.</li>
+                  <li>• You always approve the caregiver, No surprises.</li>
                   <li>• I check in regularly and welcome feedback.</li>
                   <li>• I adjust the care plan as needs change.</li>
                 </ul>
@@ -116,7 +116,7 @@ export default function AboutPage() {
                   <li>• I listen deeply to understand your needs.</li>
                   <li>• We co-create a simple, personalized care plan.</li>
                   <li>• I communicate clearly and promptly.</li>
-                  <li>• We evolve the plan—at your pace.</li>
+                  <li>• We evolve the plan at your pace.</li>
                 </ul>
               </div>
             </div>
@@ -124,7 +124,7 @@ export default function AboutPage() {
             {/* Testimonial (real or placeholder) */}
             <div className="mt-6 rounded-xl2 bg-card p-5 shadow-soft">
               <p className="text-sm italic text-gray-800">
-                “Robin felt like family from day one—gentle, reliable, and always there when we
+                “Robin felt like family from day one. Gentle, reliable, and always there when we
                 needed her.”
               </p>
               <p className="mt-2 text-xs text-gray-600">— J.S., Denver, CO</p>

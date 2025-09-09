@@ -75,7 +75,7 @@ export default function HomePage() {
               </div>
 
               <p className="mt-3 text-sm text-gray-600">
-                Based in Denver, CO (80222). Serving Denver + nearby areas.
+                Based in Denver, CO (80222). Serving all Denver Metro Areas.
               </p>
             </div>
 
@@ -96,7 +96,7 @@ export default function HomePage() {
       {/* SERVICES PREVIEW */}
       <Section title="What I can help with">
         <p className="max-w-2xl text-gray-700 leading-relaxed">
-          I tailor support around your loved one’s routines—keeping them safe, comfortable, and
+          I tailor support around your loved one’s routines, keeping them safe, comfortable, and
           connected at home.
         </p>
 
@@ -164,7 +164,7 @@ export default function HomePage() {
     items={[
       {
         quote:
-          "Robin felt like family from day one—gentle, reliable, and always there when we needed her.",
+          "Robin felt like family from day one. Gentle, reliable, and always there when we needed her.",
         author: "J.S.",
         location: "Denver, CO",
         image: "/robin/testimonial-1.jpg",
@@ -173,7 +173,7 @@ export default function HomePage() {
         quote:
           "Clear communication and so much heart. Our mom is safer and happier at home.",
         author: "M.L.",
-        location: "Aurora, CO",
+        location: "Cherry Creek, CO",
         image: "/robin/testimonial-2.jpg",
       },
     ]}

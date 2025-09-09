@@ -114,7 +114,7 @@ export default function ContactPage({ searchParams }) {
             <span className="font-semibold">Address:</span> {SITE.addressLine}
           </div>
           <div>
-            <span className="font-semibold">Service area:</span> Denver and nearby areas
+            <span className="font-semibold">Service area:</span> Denver Metro Areas
           </div>
         </div>
 

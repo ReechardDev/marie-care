@@ -30,7 +30,7 @@ export default function Header() {
     }`;
 
   return (
-<header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-white via-teal-50 to-white backdrop-blur shadow-sm">
+<header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-white via-teal-100 to-white backdrop-blur shadow-sm">
   <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
     {/* Brand: text instead of logo */}
     <a

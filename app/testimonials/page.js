@@ -20,14 +20,14 @@ const TESTIMONIALS = [
     quote:
       "Clear communication and so much heart. Our mom is safer and happier at home.",
     author: "M.L.",
-    location: "Aurora, CO",
+    location: "Cherry Creek, CO",
     image: "/robin/testimonial-2.jpg",
   },
   {
     quote: "Professional, kind, and patient. We trust Robin completely.",
     author: "A.K.",
     location: "Lakewood, CO",
-    image: "/robin/testimonial-1.jpg", // reuse until you add a 3rd unique photo
+    image: "/robin/testimonial-3.jpg", // reuse until you add a 3rd unique photo
   },
 ];
 
