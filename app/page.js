@@ -80,10 +80,9 @@ export default function HomePage() {
             </div>
 
             {/* Right hero block keeps visual interest even without an image */}
-            <div className="relative h-64 md:h-80 rounded-3xl border bg-white/60 shadow-soft backdrop-blur-sm">
-              {/* If you have a photo, drop it in /public/robin/robin-c.jpg and uncomment */}
-              {/* <Image src="/robin/robin-c.jpg" alt="Caregiver with client" fill className="rounded-3xl object-cover" /> */}
-            </div>
+            <div className="relative h-64 md:h-80 rounded-3xl border shadow-soft bg-gradient-to-br from-teal/10 via-white to-white flex items-center justify-center text-gray-500 text-sm">
+  Photo coming soon
+</div>
           </div>
         </div>
       </section>
