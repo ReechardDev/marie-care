@@ -3,7 +3,9 @@ import { SITE } from "@/lib/site";
 
 export const metadata = { title: "Contact" };
 
-export default function ContactPage() {
+export default function ContactPage({ searchParams }) {
+  const sent = searchParams?.sent === "1";
+
   return (
     <>
       <Section title="Book a free consult">
@@ -12,44 +14,120 @@ export default function ContactPage() {
           Please don’t share medical details online.
         </p>
 
-        <form className="mt-6 grid gap-4 max-w-xl">
-          <input required name="name" placeholder="Full name" className="border rounded-xl2 px-4 py-3" />
-          <input required name="phone" placeholder="Phone" inputMode="tel" className="border rounded-xl2 px-4 py-3" />
-          <input name="email" type="email" placeholder="Email (optional)" className="border rounded-xl2 px-4 py-3" />
-          <select name="time" className="border rounded-xl2 px-4 py-3">
+        {sent && (
+          <div className="mt-4 rounded-xl2 bg-mint/40 border px-4 py-3">
+            Thanks! We’ll contact you shortly.
+          </div>
+        )}
+
+        {/* Form posts to the API route that sends the email */}
+        <form action="/api/contact" method="POST" className="mt-6 grid gap-4 max-w-xl">
+          {/* Honeypot (spam trap): real users won't fill this */}
+          <input
+            type="text"
+            name="company"
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
+
+          <input
+            required
+            name="name"
+            placeholder="Full name"
+            className="border rounded-xl2 px-4 py-3"
+            autoComplete="name"
+            aria-label="Full name"
+          />
+          <input
+            required
+            name="phone"
+            placeholder="Phone"
+            inputMode="tel"
+            className="border rounded-xl2 px-4 py-3"
+            autoComplete="tel"
+            aria-label="Phone"
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email (optional)"
+            className="border rounded-xl2 px-4 py-3"
+            autoComplete="email"
+            aria-label="Email (optional)"
+          />
+          <select
+            name="time"
+            className="border rounded-xl2 px-4 py-3"
+            aria-label="Preferred contact time"
+          >
             <option value="">Preferred contact time</option>
             <option>Morning</option>
             <option>Afternoon</option>
             <option>Evening</option>
           </select>
-          <textarea name="message" rows={4} placeholder="Short message (optional)" className="border rounded-xl2 px-4 py-3" />
-          <button type="submit" className="rounded-xl2 bg-teal text-white px-4 py-3">Send</button>
+          <textarea
+            name="message"
+            rows={4}
+            placeholder="Short message (optional)"
+            className="border rounded-xl2 px-4 py-3"
+            aria-label="Message (optional)"
+          />
+          <p className="text-xs text-gray-500">We’ll never share your info.</p>
+          <button type="submit" className="rounded-xl2 bg-teal text-white px-4 py-3">
+            Send
+          </button>
         </form>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           <div className="rounded-xl2 bg-card p-5 shadow-soft">
             <div className="font-semibold">Call</div>
-            <a href={SITE.phoneLink} className="text-teal underline">{SITE.phoneDisplay}</a>
+            <a href={SITE.phoneLink} className="text-teal underline">
+              {SITE.phoneDisplay}
+            </a>
           </div>
           <div className="rounded-xl2 bg-card p-5 shadow-soft">
             <div className="font-semibold">WhatsApp</div>
-            <a href={SITE.whatsappLink} target="_blank" className="text-teal underline">Chat with us</a>
+            <a
+              href={SITE.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal underline"
+            >
+              Chat with us
+            </a>
           </div>
           <div className="rounded-xl2 bg-card p-5 shadow-soft">
             <div className="font-semibold">Email</div>
-            <a href={`mailto:${SITE.email}`} className="text-teal underline">{SITE.email}</a>
+            <a href={`mailto:${SITE.email}`} className="text-teal underline">
+              {SITE.email}
+            </a>
           </div>
         </div>
 
         <div className="mt-6 text-gray-700">
-          <div><span className="font-semibold">Hours:</span> {SITE.hours}</div>
-          <div><span className="font-semibold">Address:</span> {SITE.addressLine}</div>
-          <div><span className="font-semibold">Service area:</span> Denver and nearby areas</div>
+          <div>
+            <span className="font-semibold">Hours:</span> {SITE.hours}
+          </div>
+          <div>
+            <span className="font-semibold">Address:</span> {SITE.addressLine}
+          </div>
+          <div>
+            <span className="font-semibold">Service area:</span> Denver and nearby areas
+          </div>
         </div>
 
         {SITE.calendlyUrl && (
           <div className="mt-6">
-            <a href={SITE.calendlyUrl} target="_blank" className="text-teal underline">Schedule via Calendly</a>
+            <a
+              href={SITE.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal underline"
+            >
+              Schedule via Calendly
+            </a>
           </div>
         )}
       </Section>

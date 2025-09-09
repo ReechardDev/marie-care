@@ -1,9 +1,8 @@
-import { PLANS } from "@/lib/content";
+import { PLANS, VALUE_PILLARS } from "@/lib/content";
 import Image from "next/image";
 import Section from "@/components/Section";
 import CTAButtons from "@/components/CTAButtons";
 import { SITE } from "@/lib/site";
-import { VALUE_PILLARS } from "@/lib/content";
 
 export const metadata = {
   title: `In-Home Senior Care in ${SITE.city}`,
@@ -14,28 +13,31 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section className="relative">
-        <div className="absolute inset-0">
-          <Image
-            src="/robin/hero-caregiver.jpg"
-            alt="Caregiver offering supportive arm to smiling older adult at home."
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-ink/60" />
-        </div>
+        <Image
+          src="/robin/hero-caregiver.jpg"
+          alt="Caregiver offering supportive arm to smiling older adult at home."
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        {/* Single stronger overlay for readability on bright images */}
+        <div className="absolute inset-0 bg-ink/70 md:bg-ink/50" />
         <div className="relative mx-auto max-w-6xl px-4 py-24 text-white">
-          <h1 className="text-3xl md:text-4xl font-semibold max-w-xl">
+          <h1 className="text-2xl md:text-4xl font-semibold leading-tight max-w-[22ch]">
             Compassionate in-home care you can trust.
           </h1>
-          <p className="mt-3 max-w-xl">
+          <p className="mt-2 md:text-lg text-white/90 max-w-[38ch]">
             Kind support for daily living, delivered by background-checked caregivers in {SITE.city}, {SITE.state}.
           </p>
-          <div className="mt-4 flex gap-2 text-xs">
-            <span className="bg-white/10 rounded-full px-3 py-1">CPR Certified</span>
-            <span className="bg-white/10 rounded-full px-3 py-1">Background check</span>
-            <span className="bg-white/10 rounded-full px-3 py-1">24/7 Support</span>
+
+          {/* Trust chips */}
+          <div className="mt-4 flex flex-wrap gap-2 text-[13px]">
+            <span className="bg-white/10 rounded-full px-3 py-1">CPR-certified</span>
+            <span className="bg-white/10 rounded-full px-3 py-1">Background-checked</span>
+            <span className="bg-white/10 rounded-full px-3 py-1">24/7 support</span>
           </div>
+
           <CTAButtons />
         </div>
       </section>
@@ -62,7 +64,9 @@ export default function HomePage() {
           <li>Light housekeeping</li>
           <li>Transportation</li>
         </ul>
-        <a href="/services" className="inline-block mt-6 text-teal underline">See all services</a>
+        <a href="/services" className="inline-block mt-6 text-teal underline">
+          See all services
+        </a>
       </Section>
 
       {/* HOW IT WORKS */}
@@ -81,19 +85,20 @@ export default function HomePage() {
         </ol>
       </Section>
 
+      {/* MINI PRICING TEASER (pulls from PLANS) */}
       <Section title="Plans for every family">
-  <div className="grid gap-4 md:grid-cols-3">
-    {PLANS.slice(0, 3).map((p) => (
-      <div key={p.name} className="rounded-xl2 border p-5">
-        <div className="font-semibold">{p.name.replace(/\s*\(.*\)/, "")}</div>
-        <div className="text-sm text-gray-600 mt-1">{p.from}</div>
-      </div>
-    ))}
-  </div>
-  <a href="/care-plans" className="inline-block mt-6 text-teal underline">
-    Compare care plans
-  </a>
-</Section>
+        <div className="grid gap-4 md:grid-cols-3">
+          {PLANS.slice(0, 3).map((p) => (
+            <div key={p.name} className="rounded-xl2 border p-5">
+              <div className="font-semibold">{p.name.replace(/\s*\(.*\)/, "")}</div>
+              <div className="text-sm text-gray-600 mt-1">{p.from}</div>
+            </div>
+          ))}
+        </div>
+        <a href="/care-plans" className="inline-block mt-6 text-teal underline">
+          Compare care plans
+        </a>
+      </Section>
 
       {/* CTA STRIP */}
       <Section className="bg-mint/30">

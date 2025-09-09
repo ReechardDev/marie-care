@@ -4,3 +4,9 @@
 
 :focus-visible { outline: 2px solid #167a7a; outline-offset: 2px; }
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* iOS safe-area padding for sticky bottom bars */
+.safe-bottom { padding-bottom: max(env(safe-area-inset-bottom), 0.5rem); }
+
+/* Optional: clear, consistent focus ring for accessibility */
+:where(a, button):focus-visible { outline: none; box-shadow: 0 0 0 2px rgb(13 148 136 / 0.9); border-radius: 1rem; }

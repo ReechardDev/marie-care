@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -28,9 +29,7 @@ export const metadata = {
       "Compassionate non-medical home care. Background-checked caregivers. Flexible plans.",
     url: "https://marie-care.vercel.app",
     siteName: SITE.name,
-    images: [
-      { url: "/robin/hero-caregiver.jpg", width: 1200, height: 630, alt: SITE.name },
-    ],
+    images: [{ url: "/robin/hero-caregiver.jpg", width: 1200, height: 630, alt: SITE.name }],
     locale: "en_US",
     type: "website",
   },
@@ -66,13 +65,30 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-white text-ink">
+        {/* Google Analytics (GA4) */}
+        <Script
+          id="ga4-src"
+          src="https://www.googletagmanager.com/gtag/js?id=G-BRVFV0KG6S"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BRVFV0KG6S');
+          `}
+        </Script>
+
         <Header />
         {/* Bottom padding so the sticky bar never covers content on mobile */}
         <main className="min-h-screen pb-28">{children}</main>
         <Footer />
         <StickyBar />
+
         {/* Vercel Analytics */}
         <Analytics />
+
         {/* LocalBusiness schema */}
         <script
           type="application/ld+json"
