@@ -79,9 +79,15 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Right hero block keeps visual interest even without an image */}
-            <div className="relative h-64 md:h-80 rounded-3xl border shadow-soft bg-gradient-to-br from-teal/10 via-white to-white flex items-center justify-center text-gray-500 text-sm">
-  Photo coming soon
+            {/* Right hero block */}
+<div className="relative h-64 md:h-80 rounded-3xl border bg-white/60 shadow-soft overflow-hidden">
+  <Image
+    src="/robin/hero-main.jpg"
+    alt="Compassionate in-home senior care"
+    fill
+    className="object-cover"
+    priority
+  />
 </div>
           </div>
         </div>
@@ -153,30 +159,32 @@ export default function HomePage() {
       </Section>
 
       {/* TESTIMONIALS PREVIEW */}
-      <Section title="Families we’ve supported">
-        <Testimonials
-          items={[
-            {
-              quote:
-                "Robin felt like family from day one—gentle, reliable, and always there when we needed her.",
-              author: "J.S.",
-              location: "Denver, CO",
-            },
-            {
-              quote:
-                "Clear communication and so much heart. Our mom is safer and happier at home.",
-              author: "M.L.",
-              location: "Aurora, CO",
-            },
-          ]}
-        />
-        <a
-          href="/testimonials"
-          className="mt-6 inline-block text-teal underline underline-offset-4 hover:no-underline"
-        >
-          Read more testimonials →
-        </a>
-      </Section>
+<Section title="Families we’ve supported">
+  <Testimonials
+    items={[
+      {
+        quote:
+          "Robin felt like family from day one—gentle, reliable, and always there when we needed her.",
+        author: "J.S.",
+        location: "Denver, CO",
+        image: "/robin/testimonial-1.jpg",
+      },
+      {
+        quote:
+          "Clear communication and so much heart. Our mom is safer and happier at home.",
+        author: "M.L.",
+        location: "Aurora, CO",
+        image: "/robin/testimonial-2.jpg",
+      },
+    ]}
+  />
+  <a
+    href="/testimonials"
+    className="mt-6 inline-block text-teal underline underline-offset-4 hover:no-underline"
+  >
+    Read more testimonials →
+  </a>
+</Section>
 
       {/* FINAL CTA */}
       <Section title="Ready to talk?">

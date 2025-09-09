@@ -2,44 +2,49 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { SITE } from "@/lib/site";
 
 const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/care-plans", label: "Care Plans" },
   { href: "/about", label: "About" },
-  { href: "/testimonials", label: "Testimonials" }, // add page when ready
+  { href: "/testimonials", label: "Testimonials" }, // make sure this page exists
   { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
-  // Close the mobile menu on route change (if you use <a> it’s fine; this just guards scroll)
   useEffect(() => {
     const close = () => setOpen(false);
     window.addEventListener("hashchange", close);
     return () => window.removeEventListener("hashchange", close);
   }, []);
 
+  const linkCls = (href) =>
+    `text-sm transition hover:text-gray-900 ${
+      pathname === href ? "text-teal font-medium" : "text-gray-700"
+    }`;
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
-        {/* Brand (kept compact on mobile to avoid wrapping) */}
-        <a href="/" className="block shrink min-w-0" aria-label={SITE?.name ?? "Home"}>
-          <div className="font-semibold leading-tight text-base sm:text-lg line-clamp-2 max-w-[180px] sm:max-w-none">
-            {SITE?.name ?? "Robin’s Touch Senior Care"}
-          </div>
-        </a>
+<header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-white via-teal-50 to-white backdrop-blur shadow-sm">
+  <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
+    {/* Brand: text instead of logo */}
+    <a
+      href="/"
+      className="font-semibold text-base sm:text-lg text-[#167a7a] hover:opacity-80 transition"
+      aria-label={SITE?.name ?? "Home"}
+    >
+      {SITE?.name ?? "Robin’s Touch Senior Care"}
+    </a>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-gray-700 hover:text-gray-900"
-            >
+            <a key={l.href} href={l.href} className={linkCls(l.href)}>
               {l.label}
             </a>
           ))}
@@ -73,7 +78,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu (slide-down) */}
+      {/* Mobile menu */}
       {open && (
         <div id="mobile-menu" className="md:hidden border-t bg-white">
           <nav className="mx-auto max-w-6xl px-4 py-3 grid gap-2">
@@ -81,12 +86,15 @@ export default function Header() {
               <a
                 key={l.href}
                 href={l.href}
-                className="rounded-xl2 px-3 py-3 text-sm text-gray-800 hover:bg-gray-50"
+                className={`rounded-xl2 px-3 py-3 text-sm hover:bg-gray-50 ${
+                  pathname === l.href ? "text-teal font-medium" : "text-gray-800"
+                }`}
                 onClick={() => setOpen(false)}
               >
                 {l.label}
               </a>
             ))}
+            <div className="h-px bg-gray-200 my-1" />
             <a
               href={SITE?.phoneLink}
               className="rounded-xl2 px-3 py-3 text-sm text-gray-800 hover:bg-gray-50"

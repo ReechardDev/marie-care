@@ -42,7 +42,6 @@ export default function AboutPage() {
     name: businessName,
     description:
       "One-on-one senior and hospice support by Robin Miller (25+ years). Dignity, safety, and comfort for families in Denver, CO.",
-    // If you have a full URL in SITE.url, add: url: SITE.url,
     image: ["/robin/robin-headshot.jpg"],
     address: {
       "@type": "PostalAddress",
@@ -52,7 +51,6 @@ export default function AboutPage() {
       addressCountry: "US",
     },
     areaServed: "Denver Metro",
-    // Optional when available:
     // telephone: SITE?.phone,
     // email: SITE?.email,
   };
@@ -146,14 +144,15 @@ export default function AboutPage() {
             </a>
           </div>
 
-          {/* Supporting image (keeps visual interest on desktop; stacks on mobile) */}
+          {/* Supporting image (swapped to the wide side photo) */}
           <div className="relative w-full h-72 rounded-xl2 overflow-hidden">
             <Image
-              src="/robin/robin-headshot.jpg"
-              alt="Robin Miller headshot"
+              src="/robin/about-side.jpg"
+              alt="Robin supporting a client at home"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover"
+              priority
             />
           </div>
         </div>
