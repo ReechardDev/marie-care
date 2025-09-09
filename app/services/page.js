@@ -1,10 +1,8 @@
 // app/services/page.js
-import CTAButtons from "@/components/CTAButtons";
-import { HeartHandshake, Bath, Pill, Utensils, Car, Clock } from "lucide-react";
+import { Heart, ShowerHead, Pill, Utensils, Car, Clock } from "lucide-react";
 import Section from "@/components/Section";
 import CTAButtons from "@/components/CTAButtons";
 import { SERVICES } from "@/lib/content";
-import { SITE } from "@/lib/site";
 
 export const metadata = {
   title: "Services",
@@ -12,15 +10,16 @@ export const metadata = {
     "Companionship, personal care, medication reminders, meals & housekeeping, errands & transportation, and respite care in Denver. Non-medical support tailored to your family.",
 };
 
+// Map service titles to stable Lucide icons
 function pickIcon(title = "") {
   const t = title.toLowerCase();
-  if (t.includes("companionship") || t.includes("safety")) return HeartHandshake;
-  if (t.includes("personal")) return Bath;
+  if (t.includes("companionship") || t.includes("safety")) return Heart;
+  if (t.includes("personal")) return ShowerHead;
   if (t.includes("medication") || t.includes("reminder")) return Pill;
   if (t.includes("meal") || t.includes("house")) return Utensils;
-  if (t.includes("errand") || t.includes("transport")) return Car;
+  if (t.includes("errand") || t.includes("transport") || t.includes("ride")) return Car;
   if (t.includes("respite")) return Clock;
-  return HeartHandshake;
+  return Heart;
 }
 
 export default function ServicesPage() {
@@ -56,10 +55,10 @@ export default function ServicesPage() {
         </div>
 
         {/* Quick CTA row */}
-<div className="mt-8">
-  <CTAButtons compact align="left" />
-</div>
-</Section>
+        <div className="mt-8">
+          <CTAButtons compact align="left" />
+        </div>
+      </Section>
 
       {/* Clarity box */}
       <Section title="What’s included / What’s not" className="bg-cream">
