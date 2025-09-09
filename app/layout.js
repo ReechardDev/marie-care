@@ -1,6 +1,8 @@
+// app/layout.js
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import "./globals.css";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyBar from "@/components/StickyBar";
@@ -49,6 +51,8 @@ export default function RootLayout({ children }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: SITE.name,
+    description:
+      "One-on-one senior and hospice support by Robin Miller (25+ years). Dignity, safety, and comfort for families in Denver, CO.",
     address: {
       "@type": "PostalAddress",
       addressLocality: SITE.city,
@@ -59,13 +63,15 @@ export default function RootLayout({ children }) {
     telephone: SITE.phoneDisplay,
     email: SITE.email,
     url: "https://marie-care.vercel.app",
+    areaServed: "Denver Metro",
     openingHours: "Mo-Su 00:00-23:59",
+    image: ["/robin/robin-headshot.jpg"],
   };
 
   return (
     <html lang="en">
       <body className="bg-white text-ink">
-        {/* Google Analytics (GA4) */}
+        {/* GA4 */}
         <Script
           id="ga4-src"
           src="https://www.googletagmanager.com/gtag/js?id=G-BRVFV0KG6S"
@@ -80,9 +86,21 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
+        {/* Skip link for accessibility */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] rounded bg-teal px-3 py-2 text-white"
+        >
+          Skip to content
+        </a>
+
         <Header />
+
         {/* Bottom padding so the sticky bar never covers content on mobile */}
-        <main className="min-h-screen pb-28">{children}</main>
+        <main id="main" className="min-h-screen pb-28">
+          {children}
+        </main>
+
         <Footer />
         <StickyBar />
 
