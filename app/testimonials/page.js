@@ -1,50 +1,47 @@
 // app/testimonials/page.js
+import Image from "next/image";
 import Section from "@/components/Section";
-import Testimonials from "@/components/Testimonials";
+import { TESTIMONIALS } from "@/lib/content";
 
 export const metadata = {
-  title: "Testimonials • Robin’s Touch Senior Care",
+  title: "Testimonials",
   description:
-    "What families say about working with Robin Miller — gentle, reliable, and personal one-on-one support in Denver.",
+    "Real words from Denver families about working with Robin’s Touch Senior Care.",
 };
-
-const TESTIMONIALS = [
-  {
-    quote:
-      "Robin felt like family from day one—gentle, reliable, and always there when we needed her.",
-    author: "J.S.",
-    location: "Denver, CO",
-    image: "/robin/testimonial-1.jpg",
-  },
-  {
-    quote:
-      "Clear communication and so much heart. Our mom is safer and happier at home.",
-    author: "M.L.",
-    location: "Cherry Creek, CO",
-    image: "/robin/testimonial-2.jpg",
-  },
-  {
-    quote: "Professional, kind, and patient. We trust Robin completely.",
-    author: "A.K.",
-    location: "Lakewood, CO",
-    image: "/robin/testimonial-3.jpg", // reuse until you add a 3rd unique photo
-  },
-];
 
 export default function TestimonialsPage() {
   return (
-    <Section title="Kind words from families">
-      <p className="mb-6 max-w-2xl text-gray-700">
-        A few notes shared by families I’ve supported. Want to speak to a reference? I’m happy to
-        connect you.
+    <Section title="What families say">
+      <p className="max-w-2xl text-gray-700">
+        A few notes from families I’ve supported across Denver. Thank you for the trust.
       </p>
-      <Testimonials items={TESTIMONIALS} />
-      <a
-        href="/contact"
-        className="mt-8 inline-block rounded-xl2 bg-teal text-white px-4 py-3"
-      >
-        Book a free consult
-      </a>
+
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {TESTIMONIALS.map((t, i) => (
+          <figure
+            key={`${t.author}-${i}`}
+            className="rounded-2xl border border-teal/20 bg-white/80 p-6 shadow-soft hover:shadow-md hover:-translate-y-0.5 transition"
+          >
+            {t.image ? (
+              <Image
+                src={t.image}
+                alt={`${t.author} — ${t.location}`}
+                width={64}
+                height={64}
+                className="w-16 h-16 rounded-full object-cover mb-3"
+              />
+            ) : (
+              <div className="w-16 h-16 rounded-full bg-black/5 mb-3" aria-hidden />
+            )}
+            <blockquote className="text-gray-800 italic text-sm leading-relaxed">
+              “{t.quote}”
+            </blockquote>
+            <figcaption className="mt-3 text-sm text-gray-600">
+              — {t.author}, {t.location}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
     </Section>
   );
 }

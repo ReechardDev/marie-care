@@ -1,4 +1,6 @@
+// app/contact/page.js
 import Section from "@/components/Section";
+import ServiceAreaMap from "@/components/ServiceAreaMap";
 import { SITE } from "@/lib/site";
 
 export const metadata = { title: "Contact" };
@@ -131,6 +133,9 @@ export default function ContactPage({ searchParams }) {
           </div>
         )}
       </Section>
+
+      {/* NEW: Service area map (keeps your CTA styles untouched) */}
+      <ServiceAreaMap />
     </>
   );
 }

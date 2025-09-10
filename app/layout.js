@@ -6,14 +6,15 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyBar from "@/components/StickyBar";
+import MobileStickyCallBar from "@/components/MobileStickyCallBar";
 import { SITE } from "@/lib/site";
 
-/** Mobile-safe viewport (uses iOS safe areas) */
+/** Mobile-safe viewport */
 export const viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#167a7a", // lives in viewport (not metadata)
+  themeColor: "#167a7a",
 };
 
 /** Page metadata (SEO + social) */
@@ -41,7 +42,6 @@ export const metadata = {
     description: `Compassionate non-medical home care in ${SITE.city}.`,
     images: ["/robin/hero-caregiver.jpg"],
   },
-  /** Canonical for cleaner SEO */
   alternates: { canonical: "/" },
 };
 
@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className="bg-white text-ink">
+      <body className="bg-white text-ink antialiased">
         {/* GA4 */}
         <Script
           id="ga4-src"
@@ -96,13 +96,16 @@ export default function RootLayout({ children }) {
 
         <Header />
 
-        {/* Bottom padding so the sticky bar never covers content on mobile */}
-        <main id="main" className="min-h-screen pb-28">
+        {/* Top padding matches sticky header height; bottom padding for sticky bars */}
+        <main id="main" className="min-h-screen pb-20">
           {children}
         </main>
 
         <Footer />
         <StickyBar />
+
+        {/* Site-wide mobile call/WhatsApp bar (remove if you prefer per-page) */}
+        <MobileStickyCallBar />
 
         {/* Vercel Analytics */}
         <Analytics />

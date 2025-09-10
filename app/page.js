@@ -1,8 +1,13 @@
 // app/page.js
+import { TESTIMONIALS } from "@/lib/content";
 import CTAButtons from "@/components/CTAButtons";
 import Image from "next/image";
 import Section from "@/components/Section";
 import { SITE } from "@/lib/site";
+
+// NEW: added components per our plan
+import TrustBar from "@/components/TrustBar";
+import ServicesGrid from "@/components/ServicesGrid";
 
 export const metadata = {
   title: "In-Home Senior Care in Denver • Robin’s Touch Senior Care",
@@ -24,10 +29,11 @@ export const metadata = {
 
 export default function HomePage() {
   const businessName = SITE?.name ?? "Robin’s Touch Senior Care";
+  const previewTestimonials = (TESTIMONIALS ?? []).slice(0, 2);
 
   return (
     <>
-      {/* HERO */}
+      {/* HERO (unchanged) */}
       <section className="relative isolate">
         {/* Optional soft background image block */}
         <div className="absolute inset-0 -z-10">
@@ -48,14 +54,14 @@ export default function HomePage() {
                 stay responsive as needs change.
               </p>
 
-              {/* Primary actions */}
-<div className="mt-4">
-  <CTAButtons compact align="left" />
-</div>
+              {/* Primary actions (kept exactly as you have them) */}
+              <div className="mt-4">
+                <CTAButtons compact align="left" />
+              </div>
 
-<p className="mt-3 text-sm text-gray-600">
-  Based in Denver, CO (80222). Serving all Denver Metro Areas.
-</p>
+              <p className="mt-3 text-sm text-gray-600">
+                Based in Denver, CO (80222). Serving Denver Metro Areas.
+              </p>
             </div>
 
             {/* Right hero block */}
@@ -72,43 +78,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SERVICES PREVIEW */}
-      <Section title="What I can help with">
-        <p className="max-w-2xl text-gray-700 leading-relaxed">
-          I tailor support around your loved one’s routines, keeping them safe, comfortable, and
-          connected at home.
-        </p>
+      {/* NEW: Trust badges directly under hero */}
+      <TrustBar />
 
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { name: "Companionship", desc: "Conversation, activities, walks, and social connection." },
-            { name: "Personal care", desc: "Bathing, grooming, dressing, and respectful assistance." },
-            { name: "Medication reminders", desc: "On-time prompts and simple tracking." },
-            { name: "Meals & hydration", desc: "Light meal prep and healthy routines." },
-            { name: "Household support", desc: "Laundry, tidying, linens, and light housekeeping." },
-            { name: "Errands & rides", desc: "Appointments, groceries, pharmacy, and safe transport." },
-          ].map((s) => (
-            <div
-              key={s.name}
-              className="group rounded-2xl border border-teal/20 bg-white p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <div className="font-semibold">{s.name}</div>
-              <p className="mt-1 text-sm text-gray-700">{s.desc}</p>
-            </div>
-          ))}
-        </div>
+      {/* SERVICES (replaced old preview grid with the new icon grid component) */}
+      <ServicesGrid />
 
-        <a
-          href="/services"
-          className="mt-6 inline-block text-teal underline underline-offset-4 hover:no-underline"
-        >
-          See all services →
-        </a>
-      </Section>
-
-      {/* PRICING PREVIEW */}
+      {/* PRICING PREVIEW (unchanged) */}
       <Section title="Clear care plans & pricing">
-        <p className="max-w-2xl text-gray-700">
+        <p className="max-w-2xl text-grey-700">
           Flexible options to fit your needs. No long-term contracts.
         </p>
 
@@ -140,57 +118,44 @@ export default function HomePage() {
         </a>
       </Section>
 
-      {/* TESTIMONIALS PREVIEW */}
-      <Section title="Families we’ve supported">
-        <div className="grid gap-4 sm:grid-cols-2">
-          {[
-            {
-              quote:
-                "Robin felt like family from day one. Gentle, reliable, and always there when we needed her.",
-              author: "J.S.",
-              location: "Denver, CO",
-              image: "/robin/testimonial-1.jpg",
-            },
-            {
-              quote:
-                "Clear communication and so much heart. Our mom is safer and happier at home.",
-              author: "M.L.",
-              location: "Cherry Creek, CO",
-              image: "/robin/testimonial-2.jpg",
-            },
-          ].map((t, i) => (
-            <figure
-              key={i}
-              className="rounded-2xl border border-teal/20 bg-white/80 p-6 shadow-soft hover:shadow-md hover:-translate-y-0.5 transition text-center"
-            >
-              {t.image && (
-                <Image
-                  src={t.image}
-                  alt={t.author}
-                  width={80}
-                  height={80}
-                  className="w-20 h-20 rounded-full object-cover mx-auto mb-4"
-                />
-              )}
-              <blockquote className="text-gray-800 italic text-sm leading-relaxed">
-                “{t.quote}”
-              </blockquote>
-              <figcaption className="mt-3 text-sm text-gray-600">
-                — {t.author}, {t.location}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+      {/* TESTIMONIALS PREVIEW (now uses shared content) */}
+<Section title="Families we’ve supported">
+  <div className="grid gap-4 sm:grid-cols-2">
+    {previewTestimonials.map((t, i) => (
+      <figure
+        key={`${t.author}-${i}`}
+        className="rounded-2xl border border-emerald/50 bg-grey/60 p-6 shadow-soft hover:shadow-md hover:-translate-y-0.5 transition text-center"
+      >
+        {t.image ? (
+          <Image
+            src={t.image}
+            alt={`${t.author}, ${t.location}`}
+            width={80}
+            height={80}
+            className="w-20 h-20 rounded-full object-cover mx-auto mb-4"
+          />
+        ) : (
+          <div className="w-20 h-20 rounded-full bg-black/5 mx-auto mb-4" aria-hidden />
+        )}
+        <blockquote className="text-gray-800 italic text-sm leading-relaxed">
+          “{t.quote}”
+        </blockquote>
+        <figcaption className="mt-3 text-sm text-gray-600">
+          — {t.author}, {t.location}
+        </figcaption>
+      </figure>
+    ))}
+  </div>
 
-        <a
-          href="/testimonials"
-          className="mt-6 inline-block text-teal underline underline-offset-4 hover:no-underline"
-        >
-          Read more testimonials →
-        </a>
-      </Section>
+  <a
+    href="/testimonials"
+    className="mt-6 inline-block text-teal underline underline-offset-4 hover:no-underline"
+  >
+    Read more testimonials →
+  </a>
+</Section>
 
-      {/* FINAL CTA */}
+      {/* FINAL CTA (unchanged) */}
       <Section title="Ready to talk?">
         <p className="max-w-2xl text-gray-700">
           Tell me what your family needs. I’ll listen first and help you build a simple plan.

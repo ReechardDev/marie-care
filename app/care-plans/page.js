@@ -1,6 +1,7 @@
 // app/care-plans/page.js
 import Section from "@/components/Section";
 import CTAButtons from "@/components/CTAButtons";
+import PlanGrid from "@/components/PlanGrid";
 import { PLANS, FAQ_PREVIEW } from "@/lib/content";
 
 export const metadata = {
@@ -18,44 +19,8 @@ export default function CarePlansPage() {
           days. We’ll confirm exact pricing during your consult.
         </p>
 
-        {/* Pricing cards (equal height, CTA pinned) */}
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3 items-stretch">
-          {PLANS.map((p) => (
-            <div
-              key={p.name}
-              className="group relative h-full rounded-2xl border border-teal/20 bg-gradient-to-b from-white to-teal-50/30 p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-md flex flex-col"
-            >
-              {p.popular && (
-                <div
-                  className="absolute -top-3 right-3 rounded-full bg-[#D4AF37] text-white text-xs px-3 py-1 shadow-soft"
-                  aria-label="Most Popular plan"
-                >
-                  Most Popular
-                </div>
-              )}
-
-              <div className="flex items-baseline justify-between">
-                <div className="font-semibold text-gray-900">{p.name}</div>
-                <div className="text-lg font-semibold text-[#167a7a]">{p.from}</div>
-              </div>
-
-              {/* grow to push CTA down */}
-              <ul className="mt-3 space-y-1 text-gray-700 flex-1">
-                {p.bullet.map((b) => (
-                  <li key={b}>• {b}</li>
-                ))}
-              </ul>
-
-              <a
-                href="/contact"
-                className="inline-block mt-4 rounded-xl2 bg-[#167a7a] text-white px-4 py-3 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#167a7a]"
-                aria-label={`Select plan: ${p.name}`}
-              >
-                {p.cta}
-              </a>
-            </div>
-          ))}
-        </div>
+        {/* Pricing cards with “Learn more” popups (client component) */}
+        <PlanGrid plans={PLANS} />
 
         {/* Details */}
         <div className="mt-8 space-y-4 text-sm text-gray-800">
