@@ -17,11 +17,15 @@ export default function ServicesGrid() {
         <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
           What I can help with
         </h2>
+
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map(({ title, icon: Icon, copy }) => (
-            <div key={title} className="rounded-2xl border bg-teal/5 p-5 shadow-sm">
+            <div
+              key={title}
+              className="group rounded-2xl border border-teal/20 bg-white p-5 shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30 focus-within:shadow-md"
+            >
               <div className="flex items-center gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#167a7a]/10">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#167a7a]/10 transition-colors duration-200">
                   <Icon className="text-[#167a7a]" aria-hidden="true" />
                 </span>
                 <h3 className="text-lg font-semibold">{title}</h3>

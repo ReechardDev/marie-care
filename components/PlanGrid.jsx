@@ -43,9 +43,8 @@ export default function PlanGrid({ plans, detailsByPlan = DEFAULT_DETAILS }) {
 
         return (
           <div
-            key={plan.name}
-            className="group relative h-full rounded-2xl border border-teal/20 bg-gradient-to-b from-white to-teal-50/30 p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-md flex flex-col"
-          >
+  className="group relative h-full rounded-2xl border border-teal/20 bg-gradient-to-b from-white to-teal-50/30 p-5 shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30 flex flex-col"
+>
             {plan.popular && (
               <div
                 className="absolute -top-3 right-3 rounded-full bg-[#D4AF37] text-white text-xs px-3 py-1 shadow-soft"

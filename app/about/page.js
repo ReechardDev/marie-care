@@ -89,7 +89,7 @@ export default function AboutPage() {
               <li>I adjust the care plan as needs change.</li>
             </ul>
           </div>
-          <div className="rounded-xl2 bg-teal/30 p-5 shadow-soft border border-teal/10">
+          <div className="rounded-xl2 bg-teal/10 p-5 shadow-soft border border-teal/10">
             <div className="font-semibold mb-2">How we’ll work together</div>
             <ul className="list-disc ml-5 text-gray-700 leading-7">
               <li>I listen deeply to understand your needs.</li>

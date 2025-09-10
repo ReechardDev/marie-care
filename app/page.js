@@ -96,7 +96,7 @@ export default function HomePage() {
             { name: "Standard", price: "$50/hr", features: ["Personal care", "Meals & hydration", "Household support"] },
             { name: "Plus", price: "$100/hr", features: ["Extended support", "Errands & transport", "Flexible hours"] },
           ].map((p) => (
-            <div key={p.name} className="rounded-2xl border bg-white/70 p-5 shadow-soft">
+            <div key={p.name} className="group rounded-2xl border border-teal/20 bg-white/70 p-5 shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30">
               <div className="flex items-baseline justify-between">
                 <div className="font-semibold">{p.name}</div>
                 <div className="text-lg font-semibold">{p.price}</div>
