@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyBar from "@/components/StickyBar";
 import MobileStickyCallBar from "@/components/MobileStickyCallBar";
+import GAListener from "@/components/GAListener";
 import { SITE } from "@/lib/site";
 
 /** Mobile-safe viewport */
@@ -109,6 +110,9 @@ export default function RootLayout({ children }) {
 
         {/* Vercel Analytics */}
         <Analytics />
+
+        {/* GA4 route-change listener (fires SPA page_view) */}
+        <GAListener />
 
         {/* LocalBusiness schema */}
         <script

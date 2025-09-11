@@ -3,8 +3,13 @@
 
 import { Phone, MessageCircle } from "lucide-react";
 import { SITE } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
-export default function CTAButtons({ compact = false, align = "left" }) {
+export default function CTAButtons({
+  compact = false,
+  align = "left",
+  location = "cta_buttons",
+}) {
   const pad = compact ? "px-4 py-3" : "px-5 py-3";
   const wrap = align === "center" ? "justify-center" : "";
 
@@ -13,6 +18,7 @@ export default function CTAButtons({ compact = false, align = "left" }) {
       {/* Primary */}
       <a
         href="/contact"
+        onClick={() => track("book_consult", { location })}
         className={`rounded-xl2 bg-[#167a7a] text-white ${pad} transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#167a7a]`}
       >
         Book a free consult
@@ -22,6 +28,7 @@ export default function CTAButtons({ compact = false, align = "left" }) {
       <a
         href={SITE.phoneLink}
         aria-label={`Call ${SITE.name}`}
+        onClick={() => track("call_click", { location, tel: SITE.phoneDisplay })}
         className={`rounded-xl2 border border-[#167a7a] text-[#167a7a] ${pad} flex items-center gap-2 transition hover:bg-[#167a7a]/10 hover:-translate-y-0.5 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[#167a7a]`}
       >
         <Phone className="h-4 w-4" />
@@ -33,8 +40,9 @@ export default function CTAButtons({ compact = false, align = "left" }) {
         href={SITE.whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        className={`rounded-xl2 border border-[#25D366] text-[#25D366] ${pad} flex items-center gap-2 transition hover:bg-[#25D366]/10 hover:-translate-y-0.5 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[#25D366]`}
         aria-label="Open WhatsApp chat"
+        onClick={() => track("whatsapp_click", { location })}
+        className={`rounded-xl2 border border-[#25D366] text-[#25D366] ${pad} flex items-center gap-2 transition hover:bg-[#25D366]/10 hover:-translate-y-0.5 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[#25D366]`}
       >
         <MessageCircle className="h-4 w-4" />
         WhatsApp

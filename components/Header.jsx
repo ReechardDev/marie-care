@@ -4,6 +4,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { SITE } from "@/lib/site";
+import { track } from "@/lib/analytics";
+import BrandWordmark from "@/components/BrandWordmark";
 
 const navLinks = [
   { href: "/services", label: "Services" },
@@ -18,7 +20,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Close mobile menu on hashchange (your original behavior)
+  // Close mobile menu on hashchange (original behavior)
   useEffect(() => {
     const close = () => setOpen(false);
     window.addEventListener("hashchange", close);
@@ -39,39 +41,45 @@ export default function Header() {
     `text-sm transition ${
       pathname === href
         ? "text-[#167a7a] font-medium"
-        : "text-gray-700 hover:text-gray-900"
+        : "text-gray-700 hover:text-[#167a7a]"
     }`;
 
   return (
     <header
       className={[
-        "sticky top-0 z-50 w-full supports-[backdrop-filter]:backdrop-blur",
+        "sticky top-0 z-50 w-full supports-[backdrop-filter]:backdrop-blur-md",
         "transition-colors duration-200",
         scrolled
-          ? "bg-white/90 shadow-sm border-b border-gray-200"
-          : "bg-gradient-to-r from-white via-teal-50 to-white",
+          ? "bg-brand-cream/95 shadow-sm border-b border-teal/20"
+          : "bg-gradient-to-r from-brand-cream/90 via-white/90 to-brand-cream/90 border-b border-teal/10",
       ].join(" ")}
       role="banner"
     >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
-        {/* Brand (text) */}
+        {/* Brand wordmark (typographic) */}
         <a
           href="/"
-          className="font-bold text-base sm:text-lg text-[#167a7a] hover:opacity-90 transition"
           aria-label={SITE?.name ?? "Home"}
+          className="hover:opacity-90 transition"
         >
-          {SITE?.name ?? "Robin’s Touch Senior Care"}
+          <BrandWordmark />
         </a>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6" aria-label="Primary">
           {navLinks.map((l) => (
-            <a key={l.href} href={l.href} className={linkCls(l.href)}>
+            <a
+              key={l.href}
+              href={l.href}
+              className={linkCls(l.href)}
+              aria-current={pathname === l.href ? "page" : undefined}
+            >
               {l.label}
             </a>
           ))}
           <a
             href="/contact"
+            onClick={() => track("book_consult", { location: "header_desktop" })}
             className="rounded-xl2 bg-[#167a7a] text-white px-4 py-2 text-sm hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#167a7a]"
           >
             Book a free consult
@@ -79,9 +87,10 @@ export default function Header() {
         </nav>
 
         {/* Mobile actions */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="md:hidden flex items-center gap-2">
           <a
             href="/contact"
+            onClick={() => track("book_consult", { location: "header_mobile" })}
             className="rounded-xl2 bg-[#167a7a] text-white px-3 py-2 text-sm hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#167a7a]"
             aria-label="Book a free consult"
           >
@@ -98,7 +107,7 @@ export default function Header() {
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            {/* Accessible hamburger / close icon (pure SVG, no libs) */}
+            {/* Accessible hamburger / close icon (pure SVG) */}
             {!open ? (
               <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -131,6 +140,7 @@ export default function Header() {
       >
         {/* Overlay to boost contrast and allow outside-click to close */}
         <button
+          type="button"
           className="fixed inset-0 bg-black/40"
           aria-label="Close menu"
           onClick={closeMenu}
@@ -147,6 +157,7 @@ export default function Header() {
                 className={`text-base text-gray-800 hover:text-[#167a7a] transition ${
                   pathname === l.href ? "text-[#167a7a] font-medium" : ""
                 }`}
+                aria-current={pathname === l.href ? "page" : undefined}
                 onClick={closeMenu}
               >
                 {l.label}
@@ -175,8 +186,11 @@ export default function Header() {
             )}
             <a
               href="/contact"
+              onClick={() => {
+                track("book_consult", { location: "header_drawer" });
+                closeMenu();
+              }}
               className="mt-1 rounded-xl2 bg-[#167a7a] text-white px-4 py-3 text-base text-center hover:opacity-95"
-              onClick={closeMenu}
             >
               Book a free consult
             </a>
