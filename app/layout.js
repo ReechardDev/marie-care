@@ -1,6 +1,7 @@
 // app/layout.js
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import { Suspense } from "react";
 import "./globals.css";
 
 import Header from "@/components/Header";
@@ -104,15 +105,15 @@ export default function RootLayout({ children }) {
 
         <Footer />
         <StickyBar />
-
-        {/* Site-wide mobile call/WhatsApp bar (remove if you prefer per-page) */}
         <MobileStickyCallBar />
 
         {/* Vercel Analytics */}
         <Analytics />
 
-        {/* GA4 route-change listener (fires SPA page_view) */}
-        <GAListener />
+        {/* GA4 route-change listener wrapped in Suspense */}
+        <Suspense fallback={null}>
+          <GAListener />
+        </Suspense>
 
         {/* LocalBusiness schema */}
         <script
