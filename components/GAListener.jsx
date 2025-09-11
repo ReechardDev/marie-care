@@ -1,8 +1,9 @@
+// components/GAListener.jsx
 "use client";
 import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
-const GA_MEASUREMENT_ID = "G-BRVFV0KG6S"; // keep your current ID
+const GA_MEASUREMENT_ID = "G-BRVFV0KG6S";
 
 export default function GAListener() {
   const pathname = usePathname();
