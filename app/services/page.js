@@ -49,11 +49,11 @@ export default function ServicesPage() {
         {/* Teal panel */}
         <div className="mt-4 md:mt-6 rounded-3xl border border-teal/10 bg-teal/10 p-6 sm:p-8">
           {/* Equal-height grid */}
-          <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 items-stretch gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((svc) => (
               <article
                 key={svc.title}
-                className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30"
+                className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30"
               >
                 <h3 className="text-lg font-semibold text-gray-900">{svc.title}</h3>
 
@@ -70,7 +70,7 @@ export default function ServicesPage() {
                   ))}
                 </ul>
 
-                {/* MATCH care-plan CTA style + not full-width (centered, shorter) */}
+                {/* Short, centered CTA (matches care-plan style) */}
                 <div className="mt-4 flex justify-center">
                   <Link
                     href={`/contact?reason=request_care&service=${encodeURIComponent(svc.title)}`}

@@ -3,11 +3,11 @@
 
 export default function PlanGrid({ plans }) {
   return (
-    <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3 items-stretch">
+    <div className="mt-6 grid gap-4 sm:gap-5 sm:grid-cols-2 md:grid-cols-3 items-stretch">
       {plans.map((plan) => (
         <div
           key={plan.name}
-          className="group relative h-full rounded-2xl border border-teal/20 bg-gradient-to-b from-white to-teal-50/30 p-5 shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30 flex flex-col"
+          className="group relative h-full rounded-2xl border border-teal/20 bg-gradient-to-b from-white to-teal-50/30 p-5 md:p-6 shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30 flex flex-col"
         >
           {plan.popular && (
             <div
