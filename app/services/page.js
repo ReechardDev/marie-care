@@ -1,7 +1,8 @@
 // app/services/page.js
+import Link from "next/link";
+import { CheckCircle2 } from "lucide-react";
 import Section from "@/components/Section";
 import CTAButtons from "@/components/CTAButtons";
-import ServicesGrid from "@/components/ServicesGrid";
 
 export const metadata = {
   title: "Services",
@@ -9,19 +10,137 @@ export const metadata = {
     "Companionship, personal care, medication reminders, meals & housekeeping, errands & transportation, and respite care in Denver. Non-medical support tailored to your family.",
 };
 
+const SERVICES = [
+  {
+    title: "Companion Care",
+    bullets: [
+      "Conversation & activities",
+      "Light housekeeping & meals",
+      "Safety checks & reminders",
+    ],
+  },
+  {
+    title: "Personal Care",
+    bullets: [
+      "Bathing, grooming, dressing",
+      "Toileting & incontinence care",
+      "Transfers & mobility support",
+    ],
+  },
+  {
+    title: "Overnight Care",
+    bullets: [
+      "Bedtime & morning routines",
+      "Nighttime assistance",
+      "Medication reminders",
+    ],
+  },
+  {
+    title: "Respite Care",
+    bullets: [
+      "Short-term coverage for family breaks",
+      "Flexible schedules",
+      "Seamless handoffs",
+    ],
+  },
+  {
+    title: "Post-Hospital Support",
+    bullets: [
+      "Follow discharge plans",
+      "Transport to appointments",
+      "Meal prep & monitoring",
+    ],
+  },
+  {
+    title: "Dementia Care",
+    bullets: [
+      "Calming, structured days",
+      "Safety & wandering awareness",
+      "Family check-ins",
+    ],
+  },
+];
+
 export default function ServicesPage() {
   return (
     <>
       {/* Intro */}
       <Section title="Services">
         <p className="text-gray-700 leading-relaxed max-w-2xl">
-          We support daily living with practical, respectful help. Tell us what your loved one needs —
-          we’ll tailor a plan around routines that keep them safe, comfortable, and connected.
+          We support daily living with practical, respectful help. Tell us what
+          your loved one needs; we’ll tailor a plan around routines that keep
+          them safe, comfortable, and connected.
         </p>
       </Section>
 
-      {/* Reusable services grid with icons (replaces the old manual grid) */}
-      <ServicesGrid />
+      {/* Stable card grid with color-matched panel & cream cards */}
+      <Section>
+        {/* Header row for the grid */}
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+              Kind, reliable care, tailored to your needs
+            </h2>
+            <p className="mt-2 text-gray-600">
+              Choose the support that fits today. We’ll personalize your care
+              plan after a free assessment and adjust as needs change.
+            </p>
+          </div>
+          {/* Top CTA removed per Option B */}
+        </div>
+
+        {/* Light grey/-10 panel (bg + border via explicit hex) */}
+        <div
+          className="mt-4 md:mt-6 rounded-3xl border p-6 sm:p-8"
+          style={{
+            backgroundColor: "#EAF7F4", // light teal panel
+            borderColor: "#CDEAE4", // soft teal border
+          }}
+        >
+          {/* Equal-height grid */}
+          <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {SERVICES.map((svc) => (
+              <article
+                key={svc.title}
+                className="flex h-full flex-col rounded-2xl border p-5 shadow-sm"
+                style={{
+                  backgroundColor: "#FFF9F0", // cream card
+                  borderColor: "#E9DFD2", // warm cream border
+                }}
+              >
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {svc.title}
+                </h3>
+
+                <ul className="mt-2 grow space-y-2 text-gray-700">
+                  {svc.bullets.map((b, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <CheckCircle2
+                        aria-hidden="true"
+                        className="mt-0.5 h-5 w-5 shrink-0"
+                        style={{ color: "#167a7a" }} // brand teal icon
+                      />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href={`/contact?reason=request_care&service=${encodeURIComponent(
+                    svc.title
+                  )}`}
+                  className="mt-4 inline-flex w-full items-center justify-center rounded-xl border bg-white px-4 py-2.5 text-sm font-medium text-gray-900 shadow-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                  style={{
+                    borderColor: "#D7E9E3", // light teal border
+                  }}
+                >
+                  Request Care
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Section>
 
       {/* Quick CTA row (kept) */}
       <Section>
@@ -52,8 +171,9 @@ export default function ServicesPage() {
           <div className="rounded-xl2 bg-teal/10 p-5 shadow-soft border border-teal/10">
             <div className="font-semibold mb-2">Partners</div>
             <p className="text-gray-700">
-              If medical tasks are required, we can coordinate with licensed home-health or hospice
-              partners while we continue non-medical support.
+              If medical tasks are required, we can coordinate with licensed
+              home-health or hospice partners while we continue non-medical
+              support.
             </p>
           </div>
         </div>
@@ -62,8 +182,8 @@ export default function ServicesPage() {
       {/* Process timeline + CTA (kept) */}
       <Section title="Process timeline">
         <div className="rounded-xl2 bg-teal/10 p-5 shadow-soft text-gray-800">
-          Inquiry → Phone consult → Home visit (optional) → Plan & match → Start of care →
-          Ongoing check-ins.
+          Inquiry → Phone consult → Home visit (optional) → Plan & match → Start
+          of care → Ongoing check-ins.
         </div>
         <div className="mt-6">
           <CTAButtons />

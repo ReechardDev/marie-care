@@ -24,11 +24,11 @@ export default function CTAButtons({
         Book a free consult
       </a>
 
-      {/* Call */}
+      {/* Call (no phone number param) */}
       <a
         href={SITE.phoneLink}
         aria-label={`Call ${SITE.name}`}
-        onClick={() => track("call_click", { location, tel: SITE.phoneDisplay })}
+        onClick={() => track("call_click", { location })}
         className={`rounded-xl2 border border-[#167a7a] text-[#167a7a] ${pad} flex items-center gap-2 transition hover:bg-[#167a7a]/10 hover:-translate-y-0.5 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[#167a7a]`}
       >
         <Phone className="h-4 w-4" />

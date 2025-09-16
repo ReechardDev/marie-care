@@ -50,8 +50,8 @@ export default function Header() {
         "sticky top-0 z-50 w-full supports-[backdrop-filter]:backdrop-blur-md",
         "transition-colors duration-200",
         scrolled
-          ? "bg-brand-cream/95 shadow-sm border-b border-teal/20"
-          : "bg-gradient-to-r from-brand-cream/90 via-white/90 to-brand-cream/90 border-b border-teal/10",
+          ? "bg-brand-teal/15 shadow-sm border-b border-teal/20"
+          : "bg-gradient-to-r from-brand-teal/10 via-emerald/90 to-brand-teal/10 border-b border-teal/10",
       ].join(" ")}
       role="banner"
     >
