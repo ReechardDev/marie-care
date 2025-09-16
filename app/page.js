@@ -7,7 +7,6 @@ import { SITE } from "@/lib/site";
 
 // Components
 import TrustBar from "@/components/TrustBar";
-// ⤵ use the new home-only services preview block
 import HomeServicesBlock from "@/components/HomeServicesBlock";
 
 export const metadata = {
@@ -30,11 +29,31 @@ export const metadata = {
 
 export default function HomePage() {
   const businessName = SITE?.name ?? "Robin’s Touch Senior Care";
-  const previewTestimonials = (TESTIMONIALS ?? []).slice(0, 2);
+
+  // --- FIX: use the same avatar mapping as the testimonials page, keyed by author ---
+  const AVATAR_BY_AUTHOR = {
+    "J.S.": "/robin/testimonials/testimonial-js-denver.jpg",
+    "M.L.": "/robin/testimonials/testimonial-ml-cherry-creek.jpg",
+    "K.R.": "/robin/testimonials/testimonial-kr-highlands-ranch.jpg",
+    "T.B.": "/robin/testimonials/testimonial-tb-aurora.jpg",
+    "N.P.": "/robin/testimonials/testimonial-np-lakewood.jpg",
+  };
+
+  const previewTestimonials =
+    (TESTIMONIALS ?? [])
+      .slice(0, 2)
+      .map((t, i) => {
+        const alt = `${t.author}, ${t.location}`;
+        // Prefer our canonical file by author; fall back to a /robin/testimonials/* path if already correct
+        const fallback =
+          t.image && t.image.startsWith("/robin/testimonials/") ? t.image : null;
+        const image = AVATAR_BY_AUTHOR[t.author?.trim()] ?? fallback ?? null;
+        return { ...t, alt, image };
+      });
 
   return (
     <>
-      {/* HERO (unchanged) */}
+      {/* HERO */}
       <section className="relative isolate">
         {/* Optional soft background image block */}
         <div className="absolute inset-0 -z-10">
@@ -55,7 +74,7 @@ export default function HomePage() {
                 stay responsive as needs change.
               </p>
 
-              {/* Primary actions (kept exactly as you have them) */}
+              {/* Primary actions */}
               <div className="mt-4">
                 <CTAButtons compact align="left" />
               </div>
@@ -79,13 +98,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust badges directly under hero */}
+      {/* Trust badges */}
       <TrustBar />
 
-      {/* SERVICES – Home-only preview (reverted white cards + hover + 'See full services →') */}
+      {/* Services – Home-only preview */}
       <HomeServicesBlock />
 
-      {/* PRICING PREVIEW (unchanged) */}
+      {/* PRICING PREVIEW */}
       <Section title="Clear care plans & pricing">
         <p className="max-w-2xl text-grey-700">
           Flexible options to fit your needs. No long-term contracts.
@@ -133,10 +152,11 @@ export default function HomePage() {
               {t.image ? (
                 <Image
                   src={t.image}
-                  alt={`${t.author}, ${t.location}`}
+                  alt={t.alt}
                   width={80}
                   height={80}
                   className="w-20 h-20 rounded-full object-cover mx-auto mb-4"
+                  priority={i < 2}
                 />
               ) : (
                 <div className="w-20 h-20 rounded-full bg-black/5 mx-auto mb-4" aria-hidden />
@@ -159,7 +179,7 @@ export default function HomePage() {
         </a>
       </Section>
 
-      {/* FINAL CTA (unchanged) */}
+      {/* FINAL CTA */}
       <Section title="Ready to talk?">
         <p className="max-w-2xl text-gray-700">
           Tell me what your family needs. I’ll listen first and help you build a simple plan.
