@@ -11,54 +11,12 @@ export const metadata = {
 };
 
 const SERVICES = [
-  {
-    title: "Companion Care",
-    bullets: [
-      "Conversation & activities",
-      "Light housekeeping & meals",
-      "Safety checks & reminders",
-    ],
-  },
-  {
-    title: "Personal Care",
-    bullets: [
-      "Bathing, grooming, dressing",
-      "Toileting & incontinence care",
-      "Transfers & mobility support",
-    ],
-  },
-  {
-    title: "Overnight Care",
-    bullets: [
-      "Bedtime & morning routines",
-      "Nighttime assistance",
-      "Medication reminders",
-    ],
-  },
-  {
-    title: "Respite Care",
-    bullets: [
-      "Short-term coverage for family breaks",
-      "Flexible schedules",
-      "Seamless handoffs",
-    ],
-  },
-  {
-    title: "Post-Hospital Support",
-    bullets: [
-      "Follow discharge plans",
-      "Transport to appointments",
-      "Meal prep & monitoring",
-    ],
-  },
-  {
-    title: "Dementia Care",
-    bullets: [
-      "Calming, structured days",
-      "Safety & wandering awareness",
-      "Family check-ins",
-    ],
-  },
+  { title: "Companion Care", bullets: ["Conversation & activities","Light housekeeping & meals","Safety checks & reminders"] },
+  { title: "Personal Care", bullets: ["Bathing, grooming, dressing","Toileting & incontinence care","Transfers & mobility support"] },
+  { title: "Overnight Care", bullets: ["Bedtime & morning routines","Nighttime assistance","Medication reminders"] },
+  { title: "Respite Care", bullets: ["Short-term coverage for family breaks","Flexible schedules","Seamless handoffs"] },
+  { title: "Post-Hospital Support", bullets: ["Follow discharge plans","Transport to appointments","Meal prep & monitoring"] },
+  { title: "Dementia Care", bullets: ["Calming, structured days","Safety & wandering awareness","Family check-ins"] },
 ];
 
 export default function ServicesPage() {
@@ -73,9 +31,8 @@ export default function ServicesPage() {
         </p>
       </Section>
 
-      {/* Stable card grid with color-matched panel & cream cards */}
-      <Section>
-        {/* Header row for the grid */}
+      {/* Header + grid section (pulled up slightly) */}
+      <Section style={{ marginTop: "0.75rem" }}>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-gray-900">
@@ -86,31 +43,19 @@ export default function ServicesPage() {
               plan after a free assessment and adjust as needs change.
             </p>
           </div>
-          {/* Top CTA removed per Option B */}
+          {/* top CTA intentionally removed */}
         </div>
 
-        {/* Light grey/-10 panel (bg + border via explicit hex) */}
-        <div
-          className="mt-4 md:mt-6 rounded-3xl border p-6 sm:p-8"
-          style={{
-            backgroundColor: "#EAF7F4", // light teal panel
-            borderColor: "#CDEAE4", // soft teal border
-          }}
-        >
+        {/* Teal panel */}
+        <div className="mt-4 md:mt-6 rounded-3xl border border-teal/10 bg-teal/10 p-6 sm:p-8">
           {/* Equal-height grid */}
           <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((svc) => (
               <article
                 key={svc.title}
-                className="flex h-full flex-col rounded-2xl border p-5 shadow-sm"
-                style={{
-                  backgroundColor: "#FFF9F0", // cream card
-                  borderColor: "#E9DFD2", // warm cream border
-                }}
+                className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30"
               >
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {svc.title}
-                </h3>
+                <h3 className="text-lg font-semibold text-gray-900">{svc.title}</h3>
 
                 <ul className="mt-2 grow space-y-2 text-gray-700">
                   {svc.bullets.map((b, i) => (
@@ -125,17 +70,15 @@ export default function ServicesPage() {
                   ))}
                 </ul>
 
-                <Link
-                  href={`/contact?reason=request_care&service=${encodeURIComponent(
-                    svc.title
-                  )}`}
-                  className="mt-4 inline-flex w-full items-center justify-center rounded-xl border bg-white px-4 py-2.5 text-sm font-medium text-gray-900 shadow-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  style={{
-                    borderColor: "#D7E9E3", // light teal border
-                  }}
-                >
-                  Request Care
-                </Link>
+                {/* MATCH care-plan CTA style + not full-width (centered, shorter) */}
+                <div className="mt-4 flex justify-center">
+                  <Link
+                    href={`/contact?reason=request_care&service=${encodeURIComponent(svc.title)}`}
+                    className="rounded-xl2 bg-teal px-5 py-2.5 text-white shadow-sm transition hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+                  >
+                    Request Care
+                  </Link>
+                </div>
               </article>
             ))}
           </div>
@@ -163,7 +106,7 @@ export default function ServicesPage() {
           </div>
           <div className="rounded-xl2 bg-teal/10 p-5 shadow-soft border border-teal/10">
             <div className="font-semibold mb-2">Not included</div>
-            <ul className="list-disc ml-5 text-gray-700 leading-7">
+            <ul className="list-disc ml-5 leading-7 text-gray-700">
               <li>Nursing procedures, injections, wound care</li>
               <li>Controlled-medication administration</li>
             </ul>
