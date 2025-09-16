@@ -5,9 +5,10 @@ import Image from "next/image";
 import Section from "@/components/Section";
 import { SITE } from "@/lib/site";
 
-// NEW: added components per our plan
+// Components
 import TrustBar from "@/components/TrustBar";
-import ServicesGrid from "@/components/ServicesGrid";
+// ⤵ use the new home-only services preview block
+import HomeServicesBlock from "@/components/HomeServicesBlock";
 
 export const metadata = {
   title: "In-Home Senior Care in Denver • Robin’s Touch Senior Care",
@@ -78,11 +79,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* NEW: Trust badges directly under hero */}
+      {/* Trust badges directly under hero */}
       <TrustBar />
 
-      {/* SERVICES (replaced old preview grid with the new icon grid component) */}
-      <ServicesGrid />
+      {/* SERVICES – Home-only preview (reverted white cards + hover + 'See full services →') */}
+      <HomeServicesBlock />
 
       {/* PRICING PREVIEW (unchanged) */}
       <Section title="Clear care plans & pricing">
@@ -96,7 +97,10 @@ export default function HomePage() {
             { name: "Standard", price: "$50/hr", features: ["Personal care", "Meals & hydration", "Household support"] },
             { name: "Plus", price: "$100/hr", features: ["Extended support", "Errands & transport", "Flexible hours"] },
           ].map((p) => (
-            <div key={p.name} className="group rounded-2xl border border-teal/20 bg-white/70 p-5 shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30">
+            <div
+              key={p.name}
+              className="group rounded-2xl border border-teal/20 bg-white/70 p-5 shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30"
+            >
               <div className="flex items-baseline justify-between">
                 <div className="font-semibold">{p.name}</div>
                 <div className="text-lg font-semibold">{p.price}</div>
@@ -118,42 +122,42 @@ export default function HomePage() {
         </a>
       </Section>
 
-      {/* TESTIMONIALS PREVIEW (now uses shared content) */}
-<Section title="Families we’ve supported">
-  <div className="grid gap-4 sm:grid-cols-2">
-    {previewTestimonials.map((t, i) => (
-      <figure
-        key={`${t.author}-${i}`}
-        className="rounded-2xl border border-emerald/50 bg-grey/60 p-6 shadow-soft hover:shadow-md hover:-translate-y-0.5 transition text-center"
-      >
-        {t.image ? (
-          <Image
-            src={t.image}
-            alt={`${t.author}, ${t.location}`}
-            width={80}
-            height={80}
-            className="w-20 h-20 rounded-full object-cover mx-auto mb-4"
-          />
-        ) : (
-          <div className="w-20 h-20 rounded-full bg-black/5 mx-auto mb-4" aria-hidden />
-        )}
-        <blockquote className="text-gray-800 italic text-sm leading-relaxed">
-          “{t.quote}”
-        </blockquote>
-        <figcaption className="mt-3 text-sm text-gray-600">
-          — {t.author}, {t.location}
-        </figcaption>
-      </figure>
-    ))}
-  </div>
+      {/* TESTIMONIALS PREVIEW */}
+      <Section title="Families we’ve supported">
+        <div className="grid gap-4 sm:grid-cols-2">
+          {previewTestimonials.map((t, i) => (
+            <figure
+              key={`${t.author}-${i}`}
+              className="rounded-2xl border border-emerald/50 bg-grey/60 p-6 shadow-soft hover:shadow-md hover:-translate-y-0.5 transition text-center"
+            >
+              {t.image ? (
+                <Image
+                  src={t.image}
+                  alt={`${t.author}, ${t.location}`}
+                  width={80}
+                  height={80}
+                  className="w-20 h-20 rounded-full object-cover mx-auto mb-4"
+                />
+              ) : (
+                <div className="w-20 h-20 rounded-full bg-black/5 mx-auto mb-4" aria-hidden />
+              )}
+              <blockquote className="text-gray-800 italic text-sm leading-relaxed">
+                “{t.quote}”
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-gray-600">
+                — {t.author}, {t.location}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
 
-  <a
-    href="/testimonials"
-    className="mt-6 inline-block text-teal underline underline-offset-4 hover:no-underline"
-  >
-    Read more testimonials →
-  </a>
-</Section>
+        <a
+          href="/testimonials"
+          className="mt-6 inline-block text-teal underline underline-offset-4 hover:no-underline"
+        >
+          Read more testimonials →
+        </a>
+      </Section>
 
       {/* FINAL CTA (unchanged) */}
       <Section title="Ready to talk?">
