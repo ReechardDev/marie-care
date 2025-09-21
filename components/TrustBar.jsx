@@ -9,7 +9,7 @@ const items = [
 
 export default function TrustBar() {
   return (
-    <section aria-label="Trust badges" className="bg-[#b8f2e3]">
+    <section aria-label="Trust badges" className="bg-[#fff1da]">
       <div className="mx-auto max-w-6xl px-4 py-3 sm:py-4">
         <ul className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
           {items.map(({ icon: Icon, label }) => (
