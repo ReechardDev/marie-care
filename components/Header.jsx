@@ -34,30 +34,28 @@ export default function Header() {
   }, []);
 
   const closeMenu = useCallback(() => setOpen(false), []);
-
   const linkCls = (href) =>
-    [
-      "text-sm transition",
-      pathname === href ? "text-white font-medium" : "text-white/80 hover:text-white",
-    ].join(" ");
+    pathname === href
+      ? "text-white font-medium text-sm"
+      : "text-white/80 hover:text-white text-sm";
 
   return (
     <header
       className={[
-        "sticky top-0 z-50 w-full supports-[backdrop-filter]:backdrop-blur-0",
+        "sticky top-0 z-50 w-full",
         scrolled ? "bg-[#167a7a] shadow-[0_2px_8px_rgba(0,0,0,0.08)]" : "bg-[#167a7a]",
       ].join(" ")}
       role="banner"
     >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
-        {/* Brand */}
+        {/* Brand — single accessible label, no duplicate SR text */}
         <a
           href="/"
-          aria-label={SITE?.name ?? "Home"}
-          className="hover:opacity-95 transition text-white"
+          aria-label="Robin’s Touch Senior Care"
+          title="Robin’s Touch Senior Care"
+          className="text-white hover:opacity-95 transition"
         >
           <BrandWordmark />
-          <span className="sr-only">{SITE?.name ?? "Home"}</span>
         </a>
 
         {/* Desktop nav */}
@@ -112,13 +110,10 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile drawer + overlay */}
+      {/* Mobile drawer */}
       <div className={`md:hidden ${open ? "block" : "hidden"}`} id="mobile-menu" role="dialog" aria-modal="true">
-        <button type="button" className="fixed inset-0 bg-black/40" aria-label="Close menu" onClick={closeMenu} />
-        <nav
-          className="fixed right-0 top-[64px] bottom-0 w-80 bg-white shadow-xl border-l border-gray-200 p-5 overflow-y-auto"
-          aria-label="Mobile"
-        >
+        <button type="button" className="fixed inset-0 bg-black/40" aria-label="Close menu" onClick={() => setOpen(false)} />
+        <nav className="fixed right-0 top-[64px] bottom-0 w-80 bg-white shadow-xl border-l border-gray-200 p-5 overflow-y-auto" aria-label="Mobile">
           <div className="grid gap-2">
             {navLinks.map((l) => (
               <a
@@ -128,37 +123,17 @@ export default function Header() {
                   pathname === l.href ? "text-[#167a7a] font-medium" : ""
                 }`}
                 aria-current={pathname === l.href ? "page" : undefined}
-                onClick={closeMenu}
+                onClick={() => setOpen(false)}
               >
                 {l.label}
               </a>
             ))}
             <div className="h-px bg-gray-200 my-2" />
-            {SITE?.phoneLink && (
-              <a
-                href={SITE.phoneLink}
-                className="rounded-xl2 px-3 py-3 text-base text-gray-800 hover:bg-gray-50"
-                onClick={closeMenu}
-              >
-                Call
-              </a>
-            )}
-            {SITE?.whatsappLink && (
-              <a
-                href={SITE.whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xl2 px-3 py-3 text-base text-gray-800 hover:bg-gray-50"
-                onClick={closeMenu}
-              >
-                WhatsApp
-              </a>
-            )}
             <a
               href="/contact"
               onClick={() => {
                 track("book_consult", { location: "header_drawer" });
-                closeMenu();
+                setOpen(false);
               }}
               className="mt-1 rounded-xl2 bg-[#167a7a] text-white px-4 py-3 text-base text-center hover:opacity-95"
             >
