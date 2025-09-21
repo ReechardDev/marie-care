@@ -58,7 +58,7 @@ export default function HomePage() {
         {/* Optional soft background image block */}
         <div className="absolute inset-0 -z-10">
           {/* <Image src="/robin/hero.jpg" alt="" fill className="object-cover opacity-30" priority /> */}
-          <div className="h-full w-full bg-gradient-to-b from-teal/10 via-white to-white" />
+          <div className="h-full w-full bg-gradient-to-b from-white/60 via-white to-white" />
         </div>
 
         <div className="mx-auto max-w-6xl px-4 pt-10 pb-8 sm:pt-14">

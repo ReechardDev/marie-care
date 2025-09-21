@@ -65,14 +65,14 @@ export default function RootLayout({ children }) {
     telephone: SITE.phoneDisplay,
     email: SITE.email,
     url: "https://marie-care.vercel.app",
-    areaServed: "Denver Metro",
+    areaServed: "Denver Metro Areas",
     openingHours: "Mo-Su 00:00-23:59",
     image: ["/robin/robin-headshot.jpg"],
   };
 
   return (
     <html lang="en">
-      <body className="bg-white text-ink antialiased">
+      <body className="bg-white text-ink antialiased selection:bg-emerald-100/60 selection:text-emerald-900">
         {/* GA4 */}
         <Script
           id="ga4-src"
@@ -98,8 +98,8 @@ export default function RootLayout({ children }) {
 
         <Header />
 
-        {/* Top padding matches sticky header height; bottom padding for sticky bars */}
-        <main id="main" className="min-h-screen pb-20">
+        {/* Pure-white canvas with room for sticky bars */}
+        <main id="main" className="min-h-screen bg-white pb-20">
           {children}
         </main>
 

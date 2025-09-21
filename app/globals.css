@@ -10,3 +10,16 @@
 
 /* Optional: clear, consistent focus ring for accessibility */
 :where(a, button):focus-visible { outline: none; box-shadow: 0 0 0 2px rgb(13 148 136 / 0.9); border-radius: 1rem; }
+
+/* --- Card theme: site-wide light-teal base --- */
+.teal-cards :where(.rounded-xl2) {
+  @apply bg-emerald-50 border border-emerald-100 shadow-soft transition;
+}
+.teal-cards :where(.rounded-xl2):hover {
+  @apply bg-emerald-100 border-emerald-200;
+}
+
+/* If any pages still use these tokens, remap them to teal */
+.bg-card { @apply bg-emerald-50 !important; }
+.bg-cream { @apply bg-emerald-50 !important; }
+.border-card { @apply border-emerald-100 !important; }

@@ -11,18 +11,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Legacy tokens (kept for backwards compatibility)
-        teal: { DEFAULT: "#167a7a" }, // brand teal (legacy alias)
+        // ---- Legacy tokens (keep for backwards compatibility) ----
+        teal: { DEFAULT: "#167a7a" }, // legacy alias for brand teal
         card: "#ffffff",
         cream: "#fafaf7",
         ink: "#0f172a",
 
-        // New brand namespace (preferred going forward)
+        // ---- Brand namespace (use going forward) ----
         brand: {
-          teal: "#167a7a",
-          cream: "#fff9f0",
+          teal: "#167a7a",           // primary brand teal
+          tealLight: "#b8f2e3",      // light teal (card hover / highlights)
+          cream: "#fff9f0",          // general soft cream surface
+          creamBand: "#fff1da",      // trust bar / pill strip under hero
+        },
+
+        // ---- Semantic helpers ----
+        surface: "#ffffff",
+        border: "#e5e7eb",
+        text: {
+          heading: "#0f172a",        // near-black
+          body: "#374151",           // gray-700
+        },
+        success: {
+          outline: "#10b981",        // emerald outline (WhatsApp etc.)
         },
       },
+
       boxShadow: {
         soft: "0 8px 24px rgba(0,0,0,0.06)", // shadow-soft
       },

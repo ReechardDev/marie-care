@@ -11,20 +11,27 @@ export default function ContactPage({ searchParams }) {
   return (
     <>
       <Section title="Book a free consult">
-        <p className="text-gray-700 max-w-2xl">
-          Tell us a little about your needs. We’ll respond the same day to schedule a quick consult.
-          Please don’t share medical details online.
-        </p>
+        {/* Intro copy centered and width-limited */}
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="text-gray-700">
+            Tell us a little about your needs. We’ll respond the same day to schedule a quick consult.
+            Please don’t share medical details online.
+          </p>
 
-        {sent && (
-          <div className="mt-4 rounded-xl2 bg-mint/40 border px-4 py-3">
-            Thanks! We’ll contact you shortly.
-          </div>
-        )}
+          {sent && (
+            <div className="mt-4 inline-block text-left rounded-xl2 bg-mint/40 border px-4 py-3">
+              Thanks! We’ll contact you shortly.
+            </div>
+          )}
+        </div>
 
-        {/* Form posts to the API route that sends the email */}
-        <form action="/api/contact" method="POST" className="mt-6 grid gap-4 max-w-xl">
-          {/* Honeypot (spam trap): real users won't fill this */}
+        {/* Form centered (CTA unchanged) */}
+        <form
+          action="/api/contact"
+          method="POST"
+          className="mt-6 grid gap-4 max-w-xl mx-auto"
+        >
+          {/* Honeypot (spam trap) */}
           <input
             type="text"
             name="company"
@@ -76,39 +83,50 @@ export default function ContactPage({ searchParams }) {
             className="border rounded-xl2 px-4 py-3"
             aria-label="Message (optional)"
           />
-          <p className="text-xs text-gray-500">We’ll never share your info.</p>
+          <p className="text-xs text-gray-500 text-center">We’ll never share your info.</p>
+
+          {/* CTA kept exactly as-is */}
           <button type="submit" className="rounded-xl2 bg-teal text-white px-4 py-3">
             Send
           </button>
         </form>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          <div className="rounded-xl2 bg-card p-5 shadow-soft">
-            <div className="font-semibold">Call</div>
-            <a href={SITE.phoneLink} className="text-teal underline">
-              {SITE.phoneDisplay}
-            </a>
-          </div>
-          <div className="rounded-xl2 bg-card p-5 shadow-soft">
-            <div className="font-semibold">WhatsApp</div>
-            <a
-              href={SITE.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-teal underline"
-            >
-              Chat with us
-            </a>
-          </div>
-          <div className="rounded-xl2 bg-card p-5 shadow-soft">
-            <div className="font-semibold">Email</div>
-            <a href={`mailto:${SITE.email}`} className="text-teal underline">
-              {SITE.email}
-            </a>
-          </div>
-        </div>
+        {/* Support tiles centered (wider so email fits one line) */}
+<div className="mt-10 grid gap-4 md:grid-cols-3 max-w-4xl mx-auto">
+  <div className="rounded-xl2 bg-card p-5 shadow-soft text-center">
+    <div className="font-semibold">Call</div>
+    <a href={SITE.phoneLink} className="text-teal underline whitespace-nowrap">
+      {SITE.phoneDisplay}
+    </a>
+  </div>
 
-        <div className="mt-6 text-gray-700">
+  <div className="rounded-xl2 bg-card p-5 shadow-soft text-center">
+    <div className="font-semibold">WhatsApp</div>
+    <a
+      href={SITE.whatsappLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-teal underline whitespace-nowrap"
+    >
+      Chat with us
+    </a>
+  </div>
+
+  <div className="rounded-xl2 bg-card p-5 shadow-soft text-center">
+    <div className="font-semibold">Email</div>
+    <a
+      href={`mailto:${SITE.email}`}
+      className="text-teal underline whitespace-nowrap"
+      title={SITE.email}
+    >
+      {SITE.email}
+    </a>
+  </div>
+</div>
+
+
+        {/* Business details centered */}
+        <div className="mt-6 text-gray-700 max-w-2xl mx-auto text-center space-y-1">
           <div>
             <span className="font-semibold">Hours:</span> {SITE.hours}
           </div>
@@ -121,7 +139,7 @@ export default function ContactPage({ searchParams }) {
         </div>
 
         {SITE.calendlyUrl && (
-          <div className="mt-6">
+          <div className="mt-6 text-center">
             <a
               href={SITE.calendlyUrl}
               target="_blank"
@@ -134,7 +152,6 @@ export default function ContactPage({ searchParams }) {
         )}
       </Section>
 
-      {/* NEW: Service area map (keeps your CTA styles untouched) */}
       <ServiceAreaMap />
     </>
   );

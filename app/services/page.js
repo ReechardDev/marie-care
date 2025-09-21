@@ -1,5 +1,4 @@
 // app/services/page.js
-import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import Section from "@/components/Section";
 import CTAButtons from "@/components/CTAButtons";
@@ -21,67 +20,34 @@ const SERVICES = [
 
 export default function ServicesPage() {
   return (
-    <>
+    <div className="bg-white">
       {/* Intro */}
       <Section title="Services">
-        <p className="text-gray-700 leading-relaxed max-w-2xl">
-          We support daily living with practical, respectful help. Tell us what
-          your loved one needs; we’ll tailor a plan around routines that keep
-          them safe, comfortable, and connected.
+        <p className="max-w-2xl leading-relaxed text-gray-700">
+          We provide practical, respectful daily support, tell us what your loved one needs and we’ll tailor a plan after a free consult
+          to keep them safe, comfortable, and connected as needs change.
         </p>
       </Section>
 
-      {/* Header + grid section (pulled up slightly) */}
+      {/* Services grid — light-teal cards */}
       <Section style={{ marginTop: "0.75rem" }}>
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-              Kind, reliable care, tailored to your needs
-            </h2>
-            <p className="mt-2 text-gray-600">
-              Choose the support that fits today. We’ll personalize your care
-              plan after a free assessment and adjust as needs change.
-            </p>
-          </div>
-          {/* top CTA intentionally removed */}
-        </div>
-
-        {/* Teal panel */}
-        <div className="mt-4 md:mt-6 rounded-3xl border border-teal/10 bg-teal/10 p-6 sm:p-8">
-          {/* Equal-height grid */}
-          <div className="grid grid-cols-1 items-stretch gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((svc) => (
-              <article
-                key={svc.title}
-                className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal/30"
-              >
-                <h3 className="text-lg font-semibold text-gray-900">{svc.title}</h3>
-
-                <ul className="mt-2 grow space-y-2 text-gray-700">
-                  {svc.bullets.map((b, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2
-                        aria-hidden="true"
-                        className="mt-0.5 h-5 w-5 shrink-0"
-                        style={{ color: "#167a7a" }} // brand teal icon
-                      />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Short, centered CTA (matches care-plan style) */}
-                <div className="mt-4 flex justify-center">
-                  <Link
-                    href={`/contact?reason=request_care&service=${encodeURIComponent(svc.title)}`}
-                    className="rounded-xl2 bg-teal px-5 py-2.5 text-white shadow-sm transition hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
-                  >
-                    Request Care
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 items-stretch gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.map((svc) => (
+            <article
+              key={svc.title}
+              className="flex h-full flex-col rounded-xl2 border border-emerald-100 bg-white-50 p-5 sm:p-6 shadow-soft transition duration-200 hover:-translate-y-0.5 hover:bg-emerald-100 hover:border-emerald-200"
+            >
+              <h3 className="text-lg font-semibold text-gray-900">{svc.title}</h3>
+              <ul className="mt-2 grow space-y-2 text-gray-700">
+                {svc.bullets.map((b, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <CheckCircle2 aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0" style={{ color: "#167a7a" }} />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </div>
       </Section>
 
@@ -92,46 +58,44 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* Clarity box (kept) */}
-      <Section title="What’s included / What’s not" className="bg-cream">
+      {/* Clarity boxes — same light-teal style */}
+      <Section title="What’s included / What’s not">
         <div className="grid gap-4 md:grid-cols-3">
-          <div className="rounded-xl2 bg-teal/10 p-5 shadow-soft border border-teal/10">
-            <div className="font-semibold mb-2">Included</div>
-            <ul className="list-disc ml-5 text-gray-700 leading-7">
+          <div className="rounded-xl2 border border-emerald-100 bg-emerald-50 p-5 shadow-soft transition hover:bg-emerald-100 hover:border-emerald-200">
+            <div className="mb-2 font-semibold">Included</div>
+            <ul className="ml-5 list-disc leading-7 text-gray-700">
               <li>Companionship & safety checks</li>
               <li>Personal care (bathing, dressing, grooming)</li>
               <li>Medication reminders (non-medical)</li>
               <li>Meals, light housekeeping, errands & transportation</li>
             </ul>
           </div>
-          <div className="rounded-xl2 bg-teal/10 p-5 shadow-soft border border-teal/10">
-            <div className="font-semibold mb-2">Not included</div>
-            <ul className="list-disc ml-5 leading-7 text-gray-700">
+          <div className="rounded-xl2 border border-emerald-100 bg-emerald-50 p-5 shadow-soft transition hover:bg-emerald-100 hover:border-emerald-200">
+            <div className="mb-2 font-semibold">Not included</div>
+            <ul className="ml-5 list-disc leading-7 text-gray-700">
               <li>Nursing procedures, injections, wound care</li>
               <li>Controlled-medication administration</li>
             </ul>
           </div>
-          <div className="rounded-xl2 bg-teal/10 p-5 shadow-soft border border-teal/10">
-            <div className="font-semibold mb-2">Partners</div>
+          <div className="rounded-xl2 border border-emerald-100 bg-emerald-50 p-5 shadow-soft transition hover:bg-emerald-100 hover:border-emerald-200">
+            <div className="mb-2 font-semibold">Partners</div>
             <p className="text-gray-700">
-              If medical tasks are required, we can coordinate with licensed
-              home-health or hospice partners while we continue non-medical
+              If medical tasks are required, we can coordinate with licensed home-health or hospice partners while we continue non-medical
               support.
             </p>
           </div>
         </div>
       </Section>
 
-      {/* Process timeline + CTA (kept) */}
+      {/* Process timeline — same card style + bottom CTA row (kept) */}
       <Section title="Process timeline">
-        <div className="rounded-xl2 bg-teal/10 p-5 shadow-soft text-gray-800">
-          Inquiry → Phone consult → Home visit (optional) → Plan & match → Start
-          of care → Ongoing check-ins.
+        <div className="rounded-xl2 border border-emerald-100 bg-emerald-50 p-5 shadow-soft text-gray-800 transition hover:bg-emerald-100 hover:border-emerald-200">
+          Inquiry → Phone consult → Home visit (optional) → Plan & match → Start of care → Ongoing check-ins.
         </div>
         <div className="mt-6">
           <CTAButtons />
         </div>
       </Section>
-    </>
+    </div>
   );
 }

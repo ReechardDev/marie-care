@@ -14,19 +14,21 @@ export default function CarePlansPage() {
   return (
     <>
       <Section title="Care Plans & Pricing">
-        <p className="text-gray-700 leading-relaxed max-w-2xl">
+        <p className="max-w-2xl leading-relaxed text-gray-700">
           Choose the support that fits your schedule and budget. Rates vary by tasks, hours, and
           days. We’ll confirm exact pricing during your consult.
         </p>
 
         {/* Pricing cards */}
-        <PlanGrid plans={PLANS} />
+        <div className="teal-cards">
+          <PlanGrid plans={PLANS} />
+        </div>
 
         {/* Details */}
         <div className="mt-8 space-y-4 text-sm text-gray-800">
-          <div className="rounded-xl2 bg-card p-5 shadow-soft border border-teal/10">
-            <div className="font-semibold mb-2">Add-ons</div>
-            <ul className="list-disc ml-5 leading-7">
+          <div className="rounded-xl2 border border-emerald-100 bg-emerald-50 p-5 shadow-soft transition hover:bg-emerald-100 hover:border-emerald-200">
+            <div className="mb-2 font-semibold">Add-ons</div>
+            <ul className="ml-5 list-disc leading-7">
               <li>Overnight support</li>
               <li>Holiday coverage</li>
               <li>Additional mileage (long trips)</li>
@@ -34,18 +36,18 @@ export default function CarePlansPage() {
             </ul>
           </div>
 
-          <div className="rounded-xl2 bg-card p-5 shadow-soft border border-teal/10">
-            <div className="font-semibold mb-2">Fine print</div>
-            <ul className="list-disc ml-5 leading-7">
+          <div className="rounded-xl2 border border-emerald-100 bg-emerald-50 p-5 shadow-soft transition hover:bg-emerald-100 hover:border-emerald-200">
+            <div className="mb-2 font-semibold">Fine print</div>
+            <ul className="ml-5 list-disc leading-7">
               <li>Final rates depend on tasks, schedule, and location.</li>
               <li>Weekend/holiday differentials may apply.</li>
               <li>No long-term contracts; flexible adjustments.</li>
             </ul>
           </div>
 
-          <div className="rounded-xl2 bg-card p-5 shadow-soft border border-teal/10">
-            <div className="font-semibold mb-2">FAQs</div>
-            <ul className="list-disc ml-5 leading-7">
+          <div className="rounded-xl2 border border-emerald-100 bg-emerald-50 p-5 shadow-soft transition hover:bg-emerald-100 hover:border-emerald-200">
+            <div className="mb-2 font-semibold">FAQs</div>
+            <ul className="ml-5 list-disc leading-7">
               {FAQ_PREVIEW.map((f) => (
                 <li key={f.q}>
                   <b>{f.q}</b> — {f.a}
