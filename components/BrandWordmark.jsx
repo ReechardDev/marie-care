@@ -8,7 +8,8 @@ export default function BrandWordmark({ className = "" }) {
   const tagline = SITE?.tagline ?? "Senior Care";
 
   return (
-    <div className={`flex items-center gap-2 text-white ${className}`}>
+    <div className={`flex items-center gap-2 text-white drop-shadow ${className}`}>
+
       {/* small dot/mark */}
       <span aria-hidden="true" className="h-3 w-3 rounded-full bg-white/95 ring-2 ring-white/30" />
       {/* stacked wordmark */}

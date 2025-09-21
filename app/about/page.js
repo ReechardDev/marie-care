@@ -107,7 +107,7 @@ export default function AboutPage() {
           <blockquote className="text-gray-800 italic text-sm leading-relaxed">
             “Robin felt like family from day one. Gentle, reliable, and always there when we needed her.”
           </blockquote>
-          <figcaption className="mt-3 text-sm text-gray-600">— J.S., Denver, CO</figcaption>
+          <figcaption className="mt-3 text-sm text-gray-600">J.S., Denver, CO</figcaption>
         </figure>
 
         <p className="mt-4 text-sm text-gray-600">

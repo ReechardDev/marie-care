@@ -66,7 +66,7 @@ export default function ServiceGrid() {
               Kind, reliable care, tailored to your needs
             </h2>
             <p className="mt-2 text-gray-600">
-              Choose the support that fits today. We’ll personalize your care
+              Choose the support that fits today. I’ll personalize your care
               plan after a free assessment and adjust as needs change.
             </p>
           </div>

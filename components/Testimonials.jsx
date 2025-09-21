@@ -10,7 +10,7 @@ export default function Testimonials({ items = [] }) {
       {items.map((t, i) => (
         <figure
           key={i}
-          className="rounded-2xl bg-white/70 p-6 shadow-soft border flex flex-col items-center text-center"
+          className="rounded-2xl bg-white/75 p-6 shadow-soft border flex flex-col items-center text-center"
         >
           {t.image && (
             <Image

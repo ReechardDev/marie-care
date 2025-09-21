@@ -16,7 +16,7 @@ export default function CarePlansPage() {
       <Section title="Care Plans & Pricing">
         <p className="max-w-2xl leading-relaxed text-gray-700">
           Choose the support that fits your schedule and budget. Rates vary by tasks, hours, and
-          days. We’ll confirm exact pricing during your consult.
+          days. I’ll confirm exact pricing during your consult.
         </p>
 
         {/* Pricing cards */}

@@ -14,13 +14,13 @@ export default function ContactPage({ searchParams }) {
         {/* Intro copy centered and width-limited */}
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-gray-700">
-            Tell us a little about your needs. We’ll respond the same day to schedule a quick consult.
+            Tell us a little about your needs. I’ll respond the same day to schedule a quick consult.
             Please don’t share medical details online.
           </p>
 
           {sent && (
             <div className="mt-4 inline-block text-left rounded-xl2 bg-mint/40 border px-4 py-3">
-              Thanks! We’ll contact you shortly.
+              Thanks! I’ll contact you shortly.
             </div>
           )}
         </div>

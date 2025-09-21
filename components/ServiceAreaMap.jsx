@@ -3,7 +3,7 @@ export default function ServiceAreaMap() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-8">
       <h2 className="text-xl font-semibold">Service Area</h2>
-      <p className="mt-1 text-sm text-neutral-700">Greater Denver — contact for nearby areas.</p>
+      <p className="mt-1 text-sm text-neutral-700">Denver Metro Areas and nearby communities. Ask about your location..</p>
       <div className="mt-4 overflow-hidden rounded-2xl border">
         <iframe
           title="Denver Service Area"
